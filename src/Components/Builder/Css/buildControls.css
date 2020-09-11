@@ -1,0 +1,99 @@
+#buildControls {
+  padding: 1rem 0;
+  position: relative;
+  width: 100%;
+  background-color: #ce8e39;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#buildControls .buildControls-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#buildControls .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 533px;
+}
+
+#buildControls .ingredients {
+  width: 15rem;
+  margin-bottom: 0.6rem;
+}
+
+#buildControls .ingredients span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#buildControls .ingredients button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #e4e3e3;
+  width: 3.9rem;
+  height: 1.8rem;
+  margin: 0 0.2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: #6f3b11af;
+  border: 1px solid #854614af;
+  cursor: pointer;
+  outline: none;
+}
+
+#buildControls .ingredients button:hover {
+  background-color: #532e10;
+}
+
+@media only screen and (max-width: 600px), only screen and (max-height: 500px) {
+  #buildControls .controls {
+    width: auto;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+/*# sourceMappingURL=buildControls.css.map */

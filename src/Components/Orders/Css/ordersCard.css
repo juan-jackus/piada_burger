@@ -1,0 +1,67 @@
+.order-card {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 0.7rem;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67471d), to(#6f3b11));
+  background: linear-gradient(to bottom, #67471d 0%, #6f3b11 100%);
+}
+
+.order-card .order-card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.order-card .order-card-header .order-number {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #e4e4e4;
+}
+
+.order-card .order-card-header .order-date {
+  font-size: 0.8rem;
+  color: #adadad;
+}
+
+.order-card .order-card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 0.8rem;
+}
+
+.order-card .order-card-body .order-delevery p,
+.order-card .order-card-body .order-price p {
+  margin-bottom: 0.1rem;
+  font-size: 0.8rem;
+  color: #adadad;
+}
+
+.order-card .order-card-body .order-delevery div,
+.order-card .order-card-body .order-price div {
+  color: #e4e4e4;
+}
+
+.order-card .order-card-body .separator {
+  border-left: 3px solid #381d0760;
+  margin: 0 1rem;
+  height: 50px;
+}
+/*# sourceMappingURL=ordersCard.css.map */

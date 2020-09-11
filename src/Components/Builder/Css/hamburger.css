@@ -1,0 +1,209 @@
+#hamburger {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  max-height: 399px;
+  overflow: auto;
+  padding: 1.3rem 0 0.5rem 0;
+}
+
+#hamburger .image-loader-wrapper {
+  position: relative;
+}
+
+#hamburger .image-loader-wrapper .loader {
+  position: absolute;
+  left: 47%;
+  top: 0;
+  z-index: -30;
+}
+
+#hamburger .add-ingredients-text {
+  width: 500px;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  background-color: white;
+}
+
+#hamburger .top-bread {
+  height: 109px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#hamburger .salad {
+  height: 61px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -25px auto -29px auto;
+  z-index: 2;
+}
+
+#hamburger .tomate {
+  height: 41px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -23px auto -25px auto;
+  z-index: -1;
+}
+
+#hamburger .ognion {
+  height: 41px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -24px auto -24px auto;
+  z-index: -2;
+}
+
+#hamburger .bacon {
+  height: 61px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -15px auto -33px auto;
+  z-index: -3;
+}
+
+#hamburger .cheese {
+  height: 65px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -25px auto -57px auto;
+  z-index: -4;
+}
+
+#hamburger .scale {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
+#hamburger .egg {
+  height: 61px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -40px auto -40px auto;
+  z-index: -6;
+}
+
+#hamburger .egg2 {
+  height: 49px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -43px auto -40px auto;
+  z-index: -7;
+}
+
+#hamburger .steak-chicken {
+  height: 64px;
+  width: auto;
+  position: relative;
+  display: block;
+  margin: -27px auto -30px auto;
+  z-index: -8;
+}
+
+#hamburger .bottom-bread {
+  height: 91px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#hamburger .bottom-bread2 {
+  display: block;
+  height: 77px;
+  width: auto;
+  position: relative;
+  margin: -30px auto 0 auto;
+  z-index: -15;
+}
+
+@media only screen and (max-width: 600px), only screen and (max-height: 500px) {
+  #hamburger {
+    padding: 0.9rem 0 0.2rem 0;
+    height: auto;
+  }
+  #hamburger .add-ingredients-text {
+    display: block;
+    height: 90px;
+    width: auto;
+    margin: 5px auto 3px auto;
+  }
+  #hamburger .image-loader-wrapper .loader {
+    top: -20%;
+    left: 45%;
+  }
+  #hamburger .top-bread {
+    width: 225px;
+    height: 79px;
+    margin: 0 auto;
+  }
+  #hamburger .bottom-bread {
+    width: 219px;
+    height: 64px;
+  }
+  #hamburger .bottom-bread2 {
+    width: 219px;
+    height: 54px;
+    margin: -16px auto 0 auto;
+  }
+  #hamburger .salad {
+    width: 252px;
+    height: 37px;
+    margin: -11px auto -17px auto;
+  }
+  #hamburger .tomate {
+    width: 215px;
+    height: 31px;
+    margin: -13px auto 0 auto;
+  }
+  #hamburger .ognion {
+    width: 210px;
+    height: 31px;
+    margin: -17px auto 0 auto;
+  }
+  #hamburger .bacon {
+    width: 255px;
+    height: 47px;
+    margin: -17px auto -23px auto;
+  }
+  #hamburger .egg {
+    width: 245px;
+    height: 31px;
+    margin: -20px auto -27px auto;
+  }
+  #hamburger .egg2 {
+    width: 237px;
+    height: 31px;
+    margin: 5px auto -27px auto;
+  }
+  #hamburger .cheese {
+    width: 259px;
+    height: 37px;
+    margin: -13px auto -31px auto;
+  }
+  #hamburger .steak-chicken {
+    width: 243px;
+    height: 41px;
+    margin: -11px auto 0 auto;
+  }
+}
+
+@media only screen and (max-width: 380px), only screen and (max-height: 500px) {
+  #hamburger {
+    margin: -0.8rem 0 -0.9rem 0;
+    padding: 0.6rem 0 0 0;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+/*# sourceMappingURL=hamburger.css.map */

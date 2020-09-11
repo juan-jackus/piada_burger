@@ -1,0 +1,189 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../Assets/fonts/Roboto/Roboto-Regular.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-Black.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-BlackItalic.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-Bold.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-BoldItalic.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-Italic.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-Light.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-LightItalic.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-Medium.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-Thin.ttf'),
+    url('../Assets/fonts/Roboto/Roboto-ThinItalic.ttf');
+
+  font-family: 'Charm';
+  src: url('../Assets/fonts/Charm/Charm-Regular.ttf'),
+    url('../Assets/fonts/Charm/Charm-Bold.ttf');
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+
+  font-family: Roboto, Arial, sans-serif !important;
+  a {
+    text-decoration: none !important;
+    color: #7e7e7e;
+  }
+
+  h1 {
+    font-family: Charm, Roboto, Arial;
+    text-align: center;
+    margin-top: 1.3rem;
+    margin-bottom: 0.3rem;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  button:disabled {
+    color: rgba(100, 100, 100, 0.637) !important ;
+    background-color: rgba(195, 195, 195, 0.431) !important;
+    border: none !important;
+    cursor: default !important;
+    &:hover {
+      background-color: rgba(195, 195, 195, 0.431) !important;
+    }
+  }
+  //prettier-ignore
+  button:focus { outline: none !important; }
+  //prettier-ignore
+  button, select { border-radius: 5px !important; }
+  //prettier-ignore
+  input { border-radius: 0 5px 5px 0 !important; }
+
+  .form-group {
+    position: relative;
+
+    .message {
+      background-color: #fbe9e9;
+      color: #b64545;
+      margin-top: -3px;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 6px 5px 3px 5px;
+      border-radius: 0 0 5px 5px;
+    }
+  }
+
+  .input-group-text {
+    justify-content: center;
+    border-radius: 5px 0 0 5px;
+    width: 41px;
+  }
+
+  .desktop-navigation-img {
+    position: fixed;
+    cursor: pointer;
+    top: 107px;
+    left: 5%;
+    z-index: 3;
+    img {
+      height: 33px;
+    }
+  }
+
+  .btnStyle {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1rem 0 0 0;
+    padding: 0.7rem 1.3rem;
+    color: #805917;
+    background-color: #dad646;
+    border: 1px solid #c0bc42;
+    &:hover {
+      background-color: #62ad3d;
+      color: rgb(240, 240, 240);
+      border: 1px solid #63ad3e;
+    }
+  }
+
+  .cancel-btn {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 1.5rem 0 1.5rem;
+    padding: 0.7rem 1.3rem;
+    color: rgb(199, 199, 199);
+    background-color: #b65a30;
+    border: 1px solid #b15930;
+    &:hover {
+      background-color: #7e3d1e;
+      border: 1px solid #793a1d;
+      color: rgb(240, 240, 240);
+    }
+  }
+
+  .delete-btn {
+    background-color: rgb(116, 34, 34);
+    border: 1px solid rgb(95, 29, 29);
+    &:hover {
+      background-color: rgb(80, 25, 25);
+      color: rgb(240, 240, 240);
+    }
+  }
+}
+
+#main-div {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // NAVBAR STYLING FILE
+  @import '../Components/Navbar/Css/navbar.scss';
+
+  // HAMBURGER AND INGREDIENTS STYLING FILE
+  @import '../Components/Builder/Css/hamburger.scss';
+
+  // BUILDERS CONTROLS STYLING FILE
+  @import '../Components/Builder/Css/buildControls.scss';
+
+  // CHEKOUT STYLING
+  @import '../Components/Checkout/Css/checkout.scss';
+
+  // ODERS STYLING
+  @import '../Components/Orders/Css/orders.scss';
+
+  @import '../Components/Loader/loader.scss';
+}
+
+// SIGN IN/UP MODALS STYLING FILE
+@import '../Components/Auth/Css/modal.scss';
+
+// *****************************************************
+//               BOOTSTRAP CHECKBOX OVERWRITE
+// *****************************************************
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: green !important;
+}
+.custom-checkbox
+  .custom-control-input:checked:focus
+  ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0 rgba(0, 255, 0, 0.25);
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0px #fff, 0 0 0 0 rgba(0, 0, 0, 0.25);
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #c8ffc8;
+}
+
+// BOOTSTRAP RADIO OVERWRITE
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: green !important;
+}
+.custom-radio
+  .custom-control-input:checked:focus
+  ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0 rgba(0, 255, 0, 0.25);
+}
+.custom-radio .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0px #fff, 0 0 0 0 rgba(0, 0, 0, 0.25);
+}
+.custom-radio .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #c8ffc8;
+}

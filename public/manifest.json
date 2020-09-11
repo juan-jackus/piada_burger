@@ -1,0 +1,28 @@
+{
+  "short_name": "Piada Burger ",
+  "name": "Piada Burger",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#6f3b11",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "description": "Interactive Burger Builder App",
+  "icons": [
+    {
+      "src": "/images/icons192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/maskable_icon.png",
+      "type": "image/png",
+      "sizes": "196x196",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

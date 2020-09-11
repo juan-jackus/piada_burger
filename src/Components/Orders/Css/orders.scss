@@ -1,0 +1,83 @@
+#orders-wrapper {
+  position: relative;
+  margin-bottom: auto;
+  padding: 0 1rem 1.3rem 1rem;
+
+  .resize-text {
+    position: fixed;
+    left: 0;
+    color: rgb(133, 133, 133);
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    padding: 0.9rem 0;
+    z-index: 1;
+  }
+
+  .retrieveDataMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: rgb(133, 133, 133);
+    }
+    img {
+      height: 40px;
+      cursor: pointer;
+      opacity: 0.7;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  // ORDERS CARD FILE
+  @import './ordersCard.scss';
+
+  // ORDER SUMMARY FILE
+  @import './ordersSummary.scss';
+
+  @media only screen and (max-width: 600px),
+    only screen and (max-height: 500px) {
+    .order-card {
+      width: 100%;
+      .order-card-header,
+      .order-card-body {
+        margin: 0;
+      }
+    }
+    #order-summary {
+      .condiments-box {
+        img {
+          width: 70px;
+          height: 50px;
+        }
+      }
+
+      .frie-box,
+      .drink-box {
+        img {
+          width: auto;
+          height: 130px;
+        }
+      }
+
+      .order-summary-btn {
+        justify-content: space-between;
+        .cancel-btn {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 400px),
+    only screen and (max-height: 500px) {
+    .resize-text {
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+#hamburger {
+  user-select: none;
+  max-height: 399px;
+  overflow: auto;
+  padding: 1.3rem 0 0.5rem 0;
+
+  .image-loader-wrapper {
+    position: relative;
+    .loader {
+      position: absolute;
+      left: 47%;
+      top: 0;
+      z-index: -30;
+    }
+  }
+
+  .add-ingredients-text {
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+    background-color: white;
+  }
+
+  // INGREDIENTS STYLING FILE
+  @import './ingredients.scss';
+
+  // HAMBURGER AND INGREDIENTS MEDIA QUERRIES STYLING FILE
+  // prettier-ignore
+  @media only screen and (max-width: 600px), only screen and (max-height:500px){
+    padding: 0.9rem 0 0.2rem 0;
+    height: auto;
+
+    .add-ingredients-text {
+      display: block;
+      height: 90px;
+      width: auto; 
+      margin: 5px auto 3px auto; 
+    }
+
+    .image-loader-wrapper{
+      .loader{
+        top: -20%;
+        left: 45%;
+      }
+    }
+
+    .top-bread {width: 225px; height: 79px; margin: 0 auto;}
+    .bottom-bread { width: 219px; height: 64px;}
+    .bottom-bread2 { width: 219px; height: 54px; margin: -16px auto 0 auto;}
+    .salad {width: 252px; height: 37px; margin: -11px auto -17px auto; }
+    .tomate {width: 215px; height: 31px; margin: -13px auto 0 auto; }
+    .ognion {width: 210px; height: 31px; margin: -17px auto 0 auto; }
+    .bacon {width: 255px; height: 47px; margin: -17px auto -23px auto;}
+    .egg {width: 245px; height: 31px; margin: -20px auto -27px auto; }
+    .egg2 {width: 237px; height: 31px; margin: 5px auto -27px auto; }
+    .cheese {width: 259px; height: 37px; margin: -13px auto -31px auto; }
+    .steak-chicken {width: 243px; height: 41px; margin: -11px auto 0 auto;}
+  }
+
+  // prettier-ignore
+  @media only screen and (max-width: 380px), only screen and (max-height: 500px){
+    margin: -0.8rem 0 -0.9rem 0;
+    padding: 0.6rem 0 0 0;
+    transform: scale(0.8);
+  }
+}

@@ -1,0 +1,100 @@
+#checkout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .votre-commande-text {
+    height: 75px;
+    width: auto;
+    padding: 0.7rem 0;
+    display: block;
+  }
+
+  .instruction-text {
+    text-align: center;
+    color: rgb(141, 141, 141);
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+  }
+
+  .checkoutTotalPrice {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    span {
+      font-weight: bold;
+    }
+  }
+
+  // FRIES AND CONDIMENTS BOX STYLE
+  @import './fries&Condiments.scss';
+
+  // BOISSON BOX STYLE
+  @import './boisson.scss';
+
+  // VALIDATION FORM AND MESSAGE STYLE
+  @import '../../Order Validation/Css/orderValidation.scss';
+
+  // MEDIA QUERRIES
+  @media only screen and (max-width: 600px),
+    only screen and (max-height: 500px) {
+    #fries,
+    #condiments {
+      padding: 0 1rem;
+      .condiment-box,
+      .frite-box {
+        .frite img {
+          display: block;
+          width: 93px;
+          height: 118px;
+        }
+        .condiment-img {
+          width: 70px;
+          height: 50px;
+        }
+      }
+    }
+
+    .votre-commande-text {
+      width: auto;
+      height: 65px;
+    }
+
+    #validation-form {
+      width: 85%;
+    }
+
+    #boissons {
+      .carousel-item div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+
+        img {
+          height: 160px;
+          width: auto;
+        }
+      }
+    }
+    .message-background {
+      .message-content {
+        width: 80%;
+        .slider .body-content .message-body {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 400px),
+    only screen and (max-height: 500px) {
+    .frite-box {
+      img {
+        display: block;
+        width: 79px;
+        height: 104px;
+      }
+    }
+  }
+}

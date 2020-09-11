@@ -1,0 +1,35 @@
+#fries,
+#condiments {
+  padding: 0 1rem;
+  .condiment-box,
+  .frite-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 0.5rem;
+  }
+
+  .condiment,
+  .frite {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  .frite {
+    img {
+      display: block;
+      width: 160px;
+    }
+  }
+  .condiment-img {
+    display: block;
+    width: 130px;
+  }
+}

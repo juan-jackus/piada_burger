@@ -1,0 +1,236 @@
+#orders-wrapper {
+  position: relative;
+  margin-bottom: auto;
+  padding: 0 1rem 1.3rem 1rem;
+}
+
+#orders-wrapper .resize-text {
+  position: fixed;
+  left: 0;
+  color: #858585;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  padding: 0.9rem 0;
+  z-index: 1;
+}
+
+#orders-wrapper .retrieveDataMessage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#orders-wrapper .retrieveDataMessage p {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #858585;
+}
+
+#orders-wrapper .retrieveDataMessage img {
+  height: 40px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#orders-wrapper .retrieveDataMessage img:hover {
+  opacity: 1;
+}
+
+#orders-wrapper .order-card {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 0.7rem;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67471d), to(#6f3b11));
+  background: linear-gradient(to bottom, #67471d 0%, #6f3b11 100%);
+}
+
+#orders-wrapper .order-card .order-card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#orders-wrapper .order-card .order-card-header .order-number {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #e4e4e4;
+}
+
+#orders-wrapper .order-card .order-card-header .order-date {
+  font-size: 0.8rem;
+  color: #adadad;
+}
+
+#orders-wrapper .order-card .order-card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 0.8rem;
+}
+
+#orders-wrapper .order-card .order-card-body .order-delevery p,
+#orders-wrapper .order-card .order-card-body .order-price p {
+  margin-bottom: 0.1rem;
+  font-size: 0.8rem;
+  color: #adadad;
+}
+
+#orders-wrapper .order-card .order-card-body .order-delevery div,
+#orders-wrapper .order-card .order-card-body .order-price div {
+  color: #e4e4e4;
+}
+
+#orders-wrapper .order-card .order-card-body .separator {
+  border-left: 3px solid #381d0760;
+  margin: 0 1rem;
+  height: 50px;
+}
+
+#orders-wrapper #order-summary .frie-box,
+#orders-wrapper #order-summary .drink-box,
+#orders-wrapper #order-summary .hamburger-box,
+#orders-wrapper #order-summary .ingredients-box .relative,
+#orders-wrapper #order-summary .condiments-box .relative {
+  position: relative;
+}
+
+#orders-wrapper #order-summary .frie-box,
+#orders-wrapper #order-summary .drink-box,
+#orders-wrapper #order-summary .condiments-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#orders-wrapper #order-summary .frie-box p,
+#orders-wrapper #order-summary .drink-box p,
+#orders-wrapper #order-summary .condiments-box p {
+  background-color: rgba(111, 59, 17, 0.3);
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.7rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#orders-wrapper #order-summary .frie-box img,
+#orders-wrapper #order-summary .drink-box img {
+  width: auto;
+  height: 250px;
+}
+
+#orders-wrapper #order-summary .condiments-box img {
+  width: 130px;
+}
+
+#orders-wrapper #order-summary .spiner {
+  z-index: 100;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 15%;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  background-color: white;
+}
+
+#orders-wrapper #order-summary .hamburger-box .spiner,
+#orders-wrapper #order-summary .ingredients-box .spiner,
+#orders-wrapper #order-summary .condiments-box .spiner {
+  top: 0;
+  height: 100%;
+}
+
+#orders-wrapper #order-summary .order-summary-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 3rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media only screen and (max-width: 599px) {
+  #orders-wrapper #order-summary .frie-box .spiner,
+  #orders-wrapper #order-summary .drink-box .spiner {
+    top: 25%;
+    height: 75%;
+  }
+}
+
+@media only screen and (max-width: 600px), only screen and (max-height: 500px) {
+  #orders-wrapper .order-card {
+    width: 100%;
+  }
+  #orders-wrapper .order-card .order-card-header,
+  #orders-wrapper .order-card .order-card-body {
+    margin: 0;
+  }
+  #orders-wrapper #order-summary .condiments-box img {
+    width: 70px;
+    height: 50px;
+  }
+  #orders-wrapper #order-summary .frie-box img,
+  #orders-wrapper #order-summary .drink-box img {
+    width: auto;
+    height: 130px;
+  }
+  #orders-wrapper #order-summary .order-summary-btn {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  #orders-wrapper #order-summary .order-summary-btn .cancel-btn {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 400px), only screen and (max-height: 500px) {
+  #orders-wrapper .resize-text {
+    font-size: 0.8rem;
+  }
+}
+/*# sourceMappingURL=orders.css.map */

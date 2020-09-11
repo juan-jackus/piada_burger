@@ -1,0 +1,152 @@
+.sign-modal {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.7);
+  overflow: auto;
+  z-index: 100;
+}
+
+.sign-modal .sign-modal-content {
+  width: 95%;
+  margin: auto;
+  max-width: 450px;
+  height: auto;
+  padding: 1rem 0 1.3rem 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67471d), to(#6f3b11));
+  background: linear-gradient(to bottom, #67471d 0%, #6f3b11 100%);
+  border: 1px solid #7e7e7e41;
+  border-radius: 7px;
+  -webkit-animation-name: signmodal;
+          animation-name: signmodal;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes signmodal {
+  0% {
+    margin-top: -15px;
+    opacity: 0;
+  }
+  70% {
+    margin-top: 39px;
+    opacity: 0.7;
+  }
+  to {
+    margin-top: 23px;
+    opacity: 1;
+  }
+}
+
+@keyframes signmodal {
+  0% {
+    margin-top: -15px;
+    opacity: 0;
+  }
+  70% {
+    margin-top: 39px;
+    opacity: 0.7;
+  }
+  to {
+    margin-top: 23px;
+    opacity: 1;
+  }
+}
+
+.sign-modal h3 {
+  font-family: 'Roboto', sans-serif;
+  color: #e9e9e9;
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.sign-modal p {
+  color: #8a8a8a;
+}
+
+.sign-modal .loginline {
+  border: 1px inset rgba(0, 0, 0, 0.1);
+}
+
+.sign-modal #signin-form,
+.sign-modal #signup-form {
+  width: 85%;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.sign-modal #signin-form input,
+.sign-modal #signup-form input {
+  background-color: #e9e9e9;
+}
+
+.sign-modal #signin-form input:focus, .sign-modal #signin-form input:active,
+.sign-modal #signup-form input:focus,
+.sign-modal #signup-form input:active {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.sign-modal .cancel-btn:hover {
+  background-color: #994d2a;
+  border: 1px solid #914928;
+  color: #f0f0f0;
+}
+
+.sign-modal .formfooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #8a8a8a;
+}
+
+.sign-modal .formfooter button {
+  background-color: #572f0eaf;
+  border: 1px solid #794012af;
+  padding: 7px 15px;
+  color: #8a8a8a;
+}
+
+.sign-modal .formfooter button:hover {
+  color: white;
+  background-color: #4b2a0f;
+}
+
+.sign-modal .formfooter .signin-close {
+  margin-left: -3px;
+  border-radius: 0 5px 5px 0 !important;
+}
+
+.sign-modal .formfooter .signup-close {
+  margin-right: -3px;
+  border-radius: 5px 0 0 5px !important;
+}
+
+.sign-modal .formfooter a {
+  color: #8a8a8a;
+}
+
+.sign-modal .formfooter a img {
+  opacity: 0.5;
+}
+
+.sign-modal .formfooter a:hover {
+  color: white;
+}
+
+.sign-modal .formfooter a:hover img {
+  opacity: 1;
+}
+/*# sourceMappingURL=modal.css.map */

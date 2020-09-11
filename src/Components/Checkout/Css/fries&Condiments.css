@@ -1,0 +1,62 @@
+#fries,
+#condiments {
+  padding: 0 1rem;
+}
+
+#fries .condiment-box,
+#fries .frite-box,
+#condiments .condiment-box,
+#condiments .frite-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 0.5rem;
+}
+
+#fries .condiment,
+#fries .frite,
+#condiments .condiment,
+#condiments .frite {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+}
+
+#fries .condiment :hover,
+#fries .frite :hover,
+#condiments .condiment :hover,
+#condiments .frite :hover {
+  cursor: pointer;
+}
+
+#fries .frite img,
+#condiments .frite img {
+  display: block;
+  width: 160px;
+}
+
+#fries .condiment-img,
+#condiments .condiment-img {
+  display: block;
+  width: 130px;
+}
+/*# sourceMappingURL=fries&Condiments.css.map */

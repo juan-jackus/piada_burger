@@ -1,0 +1,142 @@
+#boissons {
+  width: 300px;
+  overflow: hidden;
+}
+
+#boissons .carousel-item div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+}
+
+#boissons .carousel-item div img {
+  height: 270px;
+  width: auto;
+}
+
+#boissons .carousel-item div span {
+  background-color: rgba(111, 59, 17, 0.3);
+  padding: 1.5% 2%;
+  margin-top: 5%;
+  border-radius: 10px;
+}
+
+#boissons .carousel-control-left-icon {
+  position: absolute;
+  left: 0;
+  top: 39%;
+  background-image: url("../Assets/arrows/carrousel-left-arrow.png") !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 45px;
+  width: 31px;
+}
+
+#boissons .carousel-control-right-icon {
+  position: absolute;
+  right: 0;
+  top: 39%;
+  background-image: url("../Assets/arrows/carrousel-right-arrow.png") !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 45px;
+  width: 31px;
+}
+
+#boissons .boisson-btn-group {
+  margin-top: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+#boissons .boisson-btn-group button {
+  font-size: 0.9rem;
+  height: 50px;
+  background-color: #f6f6f6;
+  border: 1px solid #ebebeb;
+  outline: none;
+  border-radius: 0px !important;
+}
+
+#boissons .boisson-btn-group .coca {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #e92324 0%, #b4b1bf 100%);
+}
+
+#boissons .boisson-btn-group .cocaCherry {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #a35159 0%, #b4b1bf 100%);
+}
+
+#boissons .boisson-btn-group .cocaZero {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #070707 0%, #e2352c 100%);
+}
+
+#boissons .boisson-btn-group .pepsi {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #315f9c 0%, #d52f2d 100%);
+}
+
+#boissons .boisson-btn-group .fanta {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #da6e1c 0%, #445d9c 100%);
+}
+
+#boissons .boisson-btn-group .sprite {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #259a22 0%, #5477d5 100%);
+}
+
+#boissons .boisson-btn-group .jusFraise {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #e42d0d 0%, #d8be12 100%);
+}
+
+#boissons .boisson-btn-group .jusTropical {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #049f9f 0%, #f07f3d 100%);
+}
+
+#boissons .boisson-btn-group .tonic {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #dda0a8 0%, #00000083 100%);
+}
+
+#boissons .boisson-btn-group .stellaArtois {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #89a402 0%, #8b8b8b 100%);
+}
+
+#boissons .boisson-btn-group .heineken {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: -webkit-linear-gradient(45deg, #3e8b26 0%, #161616 100%);
+}
+
+#boissons .boisson-btn-group .rose {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #c9191c 0%, #00000077 100%);
+}
+/*# sourceMappingURL=boisson.css.map */

@@ -1,0 +1,75 @@
+#order-summary {
+  .frie-box,
+  .drink-box,
+  .hamburger-box,
+  .ingredients-box .relative,
+  .condiments-box .relative {
+    position: relative;
+  }
+  .frie-box,
+  .drink-box,
+  .condiments-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      background-color: rgba(111, 59, 17, 0.3);
+      padding: 0.2rem 0.5rem;
+      margin-top: 0.7rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+  }
+  .frie-box,
+  .drink-box {
+    img {
+      width: auto;
+      height: 250px;
+    }
+  }
+
+  .condiments-box {
+    img {
+      width: 130px;
+    }
+  }
+
+  .spiner {
+    z-index: 100;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    height: 85%;
+    background-color: white;
+  }
+
+  .hamburger-box,
+  .ingredients-box,
+  .condiments-box {
+    .spiner {
+      top: 0;
+      height: 100%;
+    }
+  }
+
+  .order-summary-btn {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: space-around;
+  }
+
+  @media only screen and (max-width: 599px) {
+    .frie-box,
+    .drink-box {
+      .spiner {
+        top: 25%;
+        height: 75%;
+      }
+    }
+  }
+}

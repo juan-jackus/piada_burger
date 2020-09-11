@@ -1,0 +1,87 @@
+#order-summary .frie-box,
+#order-summary .drink-box,
+#order-summary .hamburger-box,
+#order-summary .ingredients-box .relative,
+#order-summary .condiments-box .relative {
+  position: relative;
+}
+
+#order-summary .frie-box,
+#order-summary .drink-box,
+#order-summary .condiments-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#order-summary .frie-box p,
+#order-summary .drink-box p,
+#order-summary .condiments-box p {
+  background-color: rgba(111, 59, 17, 0.3);
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.7rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#order-summary .frie-box img,
+#order-summary .drink-box img {
+  width: auto;
+  height: 250px;
+}
+
+#order-summary .condiments-box img {
+  width: 130px;
+}
+
+#order-summary .spiner {
+  z-index: 100;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 15%;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  background-color: white;
+}
+
+#order-summary .hamburger-box .spiner,
+#order-summary .ingredients-box .spiner,
+#order-summary .condiments-box .spiner {
+  top: 0;
+  height: 100%;
+}
+
+#order-summary .order-summary-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 3rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media only screen and (max-width: 599px) {
+  #order-summary .frie-box .spiner,
+  #order-summary .drink-box .spiner {
+    top: 25%;
+    height: 75%;
+  }
+}
+/*# sourceMappingURL=ordersSummary.css.map */

@@ -1,0 +1,63 @@
+#buildControls {
+  padding: 1rem 0;
+  position: relative;
+  width: 100%;
+  background-color: #ce8e39;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .buildControls-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 533px;
+  }
+
+  .ingredients {
+    width: 15rem;
+    margin-bottom: 0.6rem;
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgb(228, 227, 227);
+      width: 3.9rem;
+      height: 1.8rem;
+      margin: 0 0.2rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      background-color: #6f3b11af;
+      border: 1px solid #854614af;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        background-color: #532e10;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 600px),
+    only screen and (max-height: 500px) {
+    .controls {
+      width: auto;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}

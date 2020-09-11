@@ -1,0 +1,464 @@
+#checkout {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#checkout .votre-commande-text {
+  height: 75px;
+  width: auto;
+  padding: 0.7rem 0;
+  display: block;
+}
+
+#checkout .instruction-text {
+  text-align: center;
+  color: #8d8d8d;
+  font-size: 15px;
+  margin-bottom: 0.5rem;
+}
+
+#checkout .checkoutTotalPrice {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+#checkout .checkoutTotalPrice span {
+  font-weight: bold;
+}
+
+#checkout #fries,
+#checkout #condiments {
+  padding: 0 1rem;
+}
+
+#checkout #fries .condiment-box,
+#checkout #fries .frite-box,
+#checkout #condiments .condiment-box,
+#checkout #condiments .frite-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 0.5rem;
+}
+
+#checkout #fries .condiment,
+#checkout #fries .frite,
+#checkout #condiments .condiment,
+#checkout #condiments .frite {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+}
+
+#checkout #fries .condiment :hover,
+#checkout #fries .frite :hover,
+#checkout #condiments .condiment :hover,
+#checkout #condiments .frite :hover {
+  cursor: pointer;
+}
+
+#checkout #fries .frite img,
+#checkout #condiments .frite img {
+  display: block;
+  width: 160px;
+}
+
+#checkout #fries .condiment-img,
+#checkout #condiments .condiment-img {
+  display: block;
+  width: 130px;
+}
+
+#checkout #boissons {
+  width: 300px;
+  overflow: hidden;
+}
+
+#checkout #boissons .carousel-item div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+}
+
+#checkout #boissons .carousel-item div img {
+  height: 270px;
+  width: auto;
+}
+
+#checkout #boissons .carousel-item div span {
+  background-color: rgba(111, 59, 17, 0.3);
+  padding: 1.5% 2%;
+  margin-top: 5%;
+  border-radius: 10px;
+}
+
+#checkout #boissons .carousel-control-left-icon {
+  position: absolute;
+  left: 0;
+  top: 39%;
+  background-image: url("../Assets/arrows/carrousel-left-arrow.png") !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 45px;
+  width: 31px;
+}
+
+#checkout #boissons .carousel-control-right-icon {
+  position: absolute;
+  right: 0;
+  top: 39%;
+  background-image: url("../Assets/arrows/carrousel-right-arrow.png") !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 45px;
+  width: 31px;
+}
+
+#checkout #boissons .boisson-btn-group {
+  margin-top: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+#checkout #boissons .boisson-btn-group button {
+  font-size: 0.9rem;
+  height: 50px;
+  background-color: #f6f6f6;
+  border: 1px solid #ebebeb;
+  outline: none;
+  border-radius: 0px !important;
+}
+
+#checkout #boissons .boisson-btn-group .coca {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #e92324 0%, #b4b1bf 100%);
+}
+
+#checkout #boissons .boisson-btn-group .cocaCherry {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #a35159 0%, #b4b1bf 100%);
+}
+
+#checkout #boissons .boisson-btn-group .cocaZero {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #070707 0%, #e2352c 100%);
+}
+
+#checkout #boissons .boisson-btn-group .pepsi {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #315f9c 0%, #d52f2d 100%);
+}
+
+#checkout #boissons .boisson-btn-group .fanta {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #da6e1c 0%, #445d9c 100%);
+}
+
+#checkout #boissons .boisson-btn-group .sprite {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #259a22 0%, #5477d5 100%);
+}
+
+#checkout #boissons .boisson-btn-group .jusFraise {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #e42d0d 0%, #d8be12 100%);
+}
+
+#checkout #boissons .boisson-btn-group .jusTropical {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #049f9f 0%, #f07f3d 100%);
+}
+
+#checkout #boissons .boisson-btn-group .tonic {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #dda0a8 0%, #00000083 100%);
+}
+
+#checkout #boissons .boisson-btn-group .stellaArtois {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #89a402 0%, #8b8b8b 100%);
+}
+
+#checkout #boissons .boisson-btn-group .heineken {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: -webkit-linear-gradient(45deg, #3e8b26 0%, #161616 100%);
+}
+
+#checkout #boissons .boisson-btn-group .rose {
+  color: white;
+  border: 2px solid #e6c69c;
+  background: linear-gradient(45deg, #c9191c 0%, #00000077 100%);
+}
+
+#checkout #validation-form {
+  width: 433px;
+  color: #d4d4d4;
+  border-radius: 5px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67471d), to(#6f3b11));
+  background: linear-gradient(to bottom, #67471d 0%, #6f3b11 100%);
+  z-index: 10000;
+}
+
+#checkout #validation-form h3 {
+  font-family: 'Roboto', sans-serif;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+}
+
+#checkout .message-background {
+  position: fixed;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 30000;
+  /* Modal Content */
+}
+
+#checkout .message-background .message-content {
+  position: relative;
+  margin: auto;
+  border: 1px solid #888;
+  width: 375px;
+  height: 390px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67471d), to(#6f3b11));
+  background: linear-gradient(to bottom, #67471d 0%, #6f3b11 100%);
+  border-radius: 10px;
+  -webkit-animation-name: animatetop;
+          animation-name: animatetop;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+#checkout .message-background .message-content .close {
+  position: absolute;
+  top: -19px;
+  right: -15px;
+  color: #6f3b11;
+  padding: 0 9px;
+  background-color: white;
+  border-radius: 100%;
+  font-size: 35px;
+  font-weight: bold;
+  opacity: 1;
+}
+
+#checkout .message-background .message-content .close:hover,
+#checkout .message-background .message-content .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#checkout .message-background .message-content .slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#checkout .message-background .message-content .slider .body-content {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  left: -77%;
+  padding-right: 15px;
+  -webkit-animation: slide 5s forwards;
+          animation: slide 5s forwards;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+@-webkit-keyframes slide {
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slide {
+  100% {
+    left: 0;
+  }
+}
+
+#checkout .message-background .message-content .slider .body-content .message-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  overflow: auto;
+  padding: 20px 25px 20px 17px;
+  color: white;
+  font-family: 'Charm';
+  font-weight: lighter;
+  font-size: 1.3rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 2px outset rgba(0, 0, 0, 0.1);
+}
+
+#checkout .message-background .message-content .slider .body-content .garfield-image {
+  margin-left: -29px;
+  margin-top: 30px;
+  z-index: 1;
+}
+
+#checkout .message-background .message-content .slider .body-content .garfield-image img {
+  height: 300px;
+  width: 125px;
+}
+
+@media only screen and (max-width: 600px), only screen and (max-height: 500px) {
+  #checkout #fries,
+  #checkout #condiments {
+    padding: 0 1rem;
+  }
+  #checkout #fries .condiment-box .frite img,
+  #checkout #fries .frite-box .frite img,
+  #checkout #condiments .condiment-box .frite img,
+  #checkout #condiments .frite-box .frite img {
+    display: block;
+    width: 93px;
+    height: 118px;
+  }
+  #checkout #fries .condiment-box .condiment-img,
+  #checkout #fries .frite-box .condiment-img,
+  #checkout #condiments .condiment-box .condiment-img,
+  #checkout #condiments .frite-box .condiment-img {
+    width: 70px;
+    height: 50px;
+  }
+  #checkout .votre-commande-text {
+    width: auto;
+    height: 65px;
+  }
+  #checkout #validation-form {
+    width: 85%;
+  }
+  #checkout #boissons .carousel-item div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 300px;
+  }
+  #checkout #boissons .carousel-item div img {
+    height: 160px;
+    width: auto;
+  }
+  #checkout .message-background .message-content {
+    width: 80%;
+  }
+  #checkout .message-background .message-content .slider .body-content .message-body {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (max-width: 400px), only screen and (max-height: 500px) {
+  #checkout .frite-box img {
+    display: block;
+    width: 79px;
+    height: 104px;
+  }
+}
+/*# sourceMappingURL=checkout.css.map */
