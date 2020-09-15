@@ -2,10 +2,17 @@ import React from 'react';
 
 function Card({ orderSummary, number, orderSummaryHandler, id }) {
   let delevery = '';
-  if (orderSummary.deleveryMethod === 'rapide') {
-    delevery = "Rapide (moins d'une heure)";
-  } else {
-    delevery = 'Normale (moins de 3 heures)';
+  switch (orderSummary.deleveryMethod) {
+    case 'express':
+      delevery = "Express (moins d'une heure)";
+      break;
+    case 'fast':
+      delevery = 'Rapide (moins de 3 heures)';
+      break;
+
+    default:
+      delevery = 'Normale (moins de 7 heures)';
+      break;
   }
   return (
     <div

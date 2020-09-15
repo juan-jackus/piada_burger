@@ -7,22 +7,59 @@ import { Formik, Form } from 'formik';
 import FormikInput from '../Formik/FormikInput.jsx';
 import * as Yup from 'yup';
 
-function SignInForm({ initialValues, onSubmit }) {
+function SignInForm() {
   // Get the Show Login Form Setter From Piada Context
-  const { showModalHandler } = useContext(PiadaContext);
+  const { logInHandler, showModalHandler } = useContext(PiadaContext);
+
+  // Sign In Form Initial Values
+  const initialSignInValues = {
+    firstName: '',
+    lastName: '',
+    codePromo: '',
+  };
+
+  // Sign In Submit Handler
+  const signInSubmitHandler = (values) => {
+    showModalHandler(false);
+    const username = values.firstName + ' ' + values.lastName;
+    logInHandler(username);
+  };
+
   // RegEx for Yup Validation Schema
   const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
   // Yup Validation Schema
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
+      .trim()
       .max(50, 'La limite de caractéres (50) a été dépassèe')
       .matches(nameRegex, 'Prénom invalide')
       .min(3, 'Prénom trop court')
       .required('Veuillez renseignez ce champ '),
     lastName: Yup.string()
+      .trim()
       .max(30, 'La limite de caractéres (30) a été dépassèe')
       .matches(nameRegex, 'Nom invalide')
       .min(2, 'Prénom trop court')
+      .required('Veuillez renseignez ce champ '),
+    codePromo: Yup.string()
+      .trim()
+      .oneOf(
+        [
+          '#prm-0646c',
+          '#prm-16459',
+          '#prm-26425',
+          '#prm-36413',
+          '#prm-46411',
+          '#prm-56410',
+          '#prm-6640d',
+          '#prm-761e7',
+          '#prm-86165',
+          '#prm-96109',
+          '#prm-333',
+        ],
+        'Votre code est invalide'
+      )
       .required('Veuillez renseignez ce champ '),
   });
 
@@ -42,12 +79,12 @@ function SignInForm({ initialValues, onSubmit }) {
         <h3 className=' text-center text-white col-6'>Bienvenue</h3>
         <span className='col-3 p-0 loginline'></span>
       </div>
-      <p className='text-center'>Entrez votre Prenom et Nom</p>
+      <p className='text-center'>Entrez votre Prenom, Nom et Code promo</p>
 
       <Formik
-        initialValues={initialValues}
+        initialValues={initialSignInValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={signInSubmitHandler}
         validateOnChange={false}
         // validateOnBlur={false}
       >
@@ -55,21 +92,30 @@ function SignInForm({ initialValues, onSubmit }) {
         <Form id='signin-form'>
           {/* User First Name Input */}
           <FormikInput
-            fontAwsome='fa fa-user'
-            className='form-control text-capitalize'
+            name='firstName'
             type='text'
             id='inputEmail'
-            name='firstName'
+            className='form-control text-capitalize'
+            fontAwsome='fa fa-user'
             placeholder='Prenom'
           />
           {/* User last Name Input */}
           <FormikInput
-            fontAwsome='fa fa-lock'
-            className='form-control text-uppercase'
+            name='lastName'
             type='text'
             id='inputPassword'
-            name='lastName'
+            className='form-control text-uppercase'
+            fontAwsome='fa fa-user'
             placeholder='Nom'
+          />
+          {/* User last Name Input */}
+          <FormikInput
+            name='codePromo'
+            type='text'
+            id='inputCodePromo'
+            className='form-control'
+            fontAwsome='fa fa-hashtag'
+            placeholder='Entrez votre code promo...'
           />
 
           <button

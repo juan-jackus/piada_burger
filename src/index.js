@@ -14,7 +14,7 @@ const app = (
   // Context Api Provider
   <PiadaProvider>
     {/* Initialize React Router */}
-    <BrowserRouter>
+    <BrowserRouter basename='/index.html'>
       <App />
     </BrowserRouter>
   </PiadaProvider>

@@ -5,9 +5,18 @@ import FormikInput from '../Formik/FormikInput.jsx';
 import * as Yup from 'yup';
 import arrow2 from '../../Assets/arrows/signup-arrow.png';
 
-const SignUpForm = ({ initialValues, onSubmit }) => {
+const SignUpForm = () => {
   // Get showModalHandler From Piada Context
-  const { showModalHandler } = useContext(PiadaContext);
+  const { signUpHandler, showModalHandler } = useContext(PiadaContext);
+
+  // Sign Up Form Initial Values
+  const initialSignUpValues = {
+    userName: '',
+    signupEmail: '',
+    signupPassword: '',
+    confirmPassword: '',
+  };
+
   // Set a Array of already Taken Email Address
   const alreadyTakenEmail = [
     'jeanjacquesndao@gmail.com',
@@ -38,12 +47,12 @@ const SignUpForm = ({ initialValues, onSubmit }) => {
       )
       .min(3, 'Nom trop court')
       .required('Veuillez renseignez ce champ '),
-    email: Yup.string()
+    signupEmail: Yup.string()
       .lowercase()
       .email('Addresse Email Invalide')
       .notOneOf(alreadyTakenEmail, 'Adresse Email non disponible')
       .required('Veuillez renseignez ce champ '),
-    password: Yup.string()
+    signupPassword: Yup.string()
       .max(50, 'Mot de passe trop long')
       .matches(numberRegex, 'Doit contenir au moins un chiffre')
       .matches(uppercaseRegex, 'Doit contenir au moins une lettre majuscule')
@@ -51,7 +60,7 @@ const SignUpForm = ({ initialValues, onSubmit }) => {
       .min(5, 'Minimum 5 caractéres requis')
       .required('Veuillez renseignez ce champ '),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password')], 'Mots de passe différents')
+      .oneOf([Yup.ref('signupPassword')], 'Mots de passe différents')
       .required('Veuillez renseignez ce champ '),
   });
 
@@ -63,44 +72,44 @@ const SignUpForm = ({ initialValues, onSubmit }) => {
       </p>
       <hr />
       <Formik
-        initialValues={initialValues}
+        initialValues={initialSignUpValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={signUpHandler}
         validateOnChange={false}
         // validateOnBlur={false}
       >
         <Form id='signup-form'>
           <FormikInput
-            fontAwsome='fa fa-user'
-            className='form-control text-capitalize'
+            name='userName'
             type='text'
             id='singupUser'
-            name='userName'
+            className='form-control text-capitalize'
+            fontAwsome='fa fa-user'
             placeholder='Pseudonyme'
           />
           <FormikInput
-            fontAwsome='fa fa-paper-plane'
-            className='form-control'
+            name='signupEmail'
             type='email'
             id='singnupEmail'
-            name='email'
+            className='form-control'
+            fontAwsome='fa fa-paper-plane'
             placeholder='Email'
           />
           <FormikInput
-            fontAwsome='fa fa-lock'
-            className='form-control'
+            name='signupPassword'
             type='password'
             id='signupPassword'
-            name='password'
+            className='form-control'
+            fontAwsome='fa fa-lock'
             placeholder='Mot de passe'
           />
           <FormikInput
-            fontAwsome='fa fa-check'
-            className='form-control'
+            name='confirmPassword'
             type='password'
             id='signupPassword2'
-            name='confirmPassword'
-            placeholder='Confirmer le Mot de passe'
+            className='form-control'
+            fontAwsome='fa fa-check'
+            placeholder='Confirmer le mot de passe'
           />
           {/* Validate Button */}
           <button type='submit' className='cancel-btn w-100 mx-auto my-3'>

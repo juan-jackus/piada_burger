@@ -58,7 +58,7 @@ const OderSummary = ({ orderSummary, ...props }) => {
       <div className='d-flex justify-content-around mt-2'>
         {orderSummary.selectedDrink && (
           <div className='drink-box'>
-            <h1 className='mb-3'>Boissons</h1>
+            <h1 className='mb-3'>Boisson</h1>
             <picture>
               <source
                 srcSet={boissonWebp[orderSummary.selectedDrink]}

@@ -1586,6 +1586,21 @@ body .delete-btn:hover {
           box-shadow: none !important;
 }
 
+.sign-modal #signin-form .field-icon,
+.sign-modal #signup-form .field-icon {
+  position: absolute;
+  right: 0;
+  margin: 11px 7px 0 0;
+  color: #747474;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.sign-modal #signin-form .field-icon:hover,
+.sign-modal #signup-form .field-icon:hover {
+  color: black;
+}
+
 .sign-modal .cancel-btn:hover {
   background-color: #994d2a;
   border: 1px solid #914928;

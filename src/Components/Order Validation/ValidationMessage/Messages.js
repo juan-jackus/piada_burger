@@ -1,8 +1,140 @@
 import React from 'react';
+import allaImage from '../../../Assets/msg/alla.gif';
+import amieImage from '../../../Assets/msg/amie-kebou.png';
+import marieImage from '../../../Assets/msg/marie.png';
+import gorillaImage from '../../../Assets/msg/gorilla.gif';
 
 function personalMessage(phoneNumber) {
   let message = '';
   switch (phoneNumber) {
+    case '78 437 85 20': // Astou Gueye
+    case '77 900 70 50': // Mamy Ndiaye
+    case '77 815 16 89': // Kine
+    case '77 749 56 23': // Astou Ndiaye
+    case '78 561 49 61': // Awa Mbene
+    case '77 966 05 48': // Diatou
+    case '77 160 68 48': // Penda
+    case '77 480 38 08': // Nadia
+    case '77 879 48 28': // Nadia
+    case '78 203 61 77': // Khadija Cissé
+    case '78 339 55 10': // Marie
+    case '77 217 93 87': // Yacine
+      message = [
+        <div className='message-body' key='personal-message'>
+          <span style={{ marginBottom: '5px' }}>
+            Hey way!!! yow nak ya fouy deug té beug waneu
+          </span>
+          <span style={{ marginBottom: '5px' }}>
+            Mey wakh ngua def sa commande bou reuy bi di diaye beuneulé
+          </span>
+          <span style={{ marginBottom: '5px' }}>
+            khamouma fo riffé mais doffi sourré
+          </span>
+          <span role='img' aria-label='sheep'>
+            😂
+          </span>
+        </div>,
+      ];
+      break;
+    case '77 668 82 36': // Alla Top
+      message = [
+        <div className='message-body' key='personal-message'>
+          <span style={{ marginBottom: '5px' }}>
+            Alla yow do am touss, mane ngay torokhal
+          </span>
+          <img
+            src={marieImage}
+            alt='Alla Gniokaly'
+            width='150'
+            // height='185'
+            style={{ objectFit: 'contain' }}
+          />
+          <span className='mx-auto' role='img' aria-label='sheep'>
+            😂
+          </span>
+        </div>,
+      ];
+      break;
+    case '75 636 47 24': // Alla Top
+      message = [
+        <div className='message-body' key='personal-message'>
+          <span style={{ marginBottom: '5px' }}>
+            Alla gniokaly té doto kokakly bayil beug waneu
+          </span>
+          <img
+            src={allaImage}
+            alt='Alla Gniokaly'
+            width='150'
+            height='185'
+            style={{ objectFit: 'contain' }}
+          />
+          <span style={{ marginBottom: '5px' }}>ya gniapakhou li yeup </span>
+          <span className='mx-auto' role='img' aria-label='sheep'>
+            😂
+          </span>
+        </div>,
+      ];
+      break;
+    case '78 476 60 96': // Binta
+      message = [
+        <div className='message-body' key='personal-message'>
+          <span style={{ marginBottom: '5px' }}>
+            Binta wonder woman beuneulé bakhoul!
+          </span>
+          <span style={{ marginBottom: '5px' }}>
+            Ta commande arrivera dans un mois
+          </span>
+          <span style={{ marginBottom: '5px' }}>
+            Va cultiver de la glace en attendant
+          </span>
+          <span className='mx-auto' role='img' aria-label='sheep'>
+            😂
+          </span>
+        </div>,
+      ];
+      break;
+    case '77 784 08 67': // Adama Kebou
+    case '77 232 96 50': // Adama Kebou
+      message = [
+        <div className='message-body' key='personal-message'>
+          <span style={{ marginBottom: '5px' }}>
+            Hey way!!! Bou ndaw yow nak ya affamé deug té beug waneu
+          </span>
+          <span style={{ marginBottom: '5px' }}>
+            Mey wakh ngua def sa commande bou reuy bi di regn regnlou ak di
+            diaye beuneulé
+          </span>
+          <span style={{ marginBottom: '5px' }}>
+            way demal beyi glace rien est gratuit ici!
+          </span>
+          <span role='img' aria-label='sheep'>
+            😂
+          </span>
+        </div>,
+      ];
+      break;
+    case '77 134 95 26': // Amie Kebou
+      message = [
+        <div className='message-body' key='personal-message'>
+          <span style={{ marginBottom: '5px' }}>
+            Kou la khol fii khamné dangua yageu riff
+          </span>
+          <img
+            src={amieImage}
+            alt='Amie Kebou'
+            width='150'
+            height='185'
+            style={{ objectFit: 'contain' }}
+          />
+          <span style={{ marginBottom: '5px' }}>
+            Bayil beuneulé bi ya rien pour toi ici!
+          </span>
+          <span role='img' aria-label='sheep'>
+            😂
+          </span>
+        </div>,
+      ];
+      break;
     case '77 599 67 67': // Sybile
       message = [
         <div className='message-body' key='personal-message'>
@@ -17,43 +149,6 @@ function personalMessage(phoneNumber) {
           </span>
           <span className='text-center' role='img' aria-label='sheep'>
             😂
-          </span>
-        </div>,
-      ];
-      break;
-    case '77 349 99 05': // Andrea
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Hey Andrea beuneulé bakhoul
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            Yow fo riffé la beug kham? Demal lékeu gniankantang ak doutirr mo
-            geune
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            geumeul Yallah li application bou mey tester rek la
-          </span>
-          <span className='text-center' role='img' aria-label='sheep'>
-            😂
-          </span>
-        </div>,
-      ];
-      break;
-    case '77 698 45 75': // Johana
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Hey Johanna Bayil beuneulé
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            " L'espoir fait vivre mais la Faim Tue
-          </span>
-          <span>
-            Reste affamé dans la dignité "{' '}
-            <span role='img' aria-label='sheep'>
-              😂
-            </span>
           </span>
         </div>,
       ];
@@ -76,24 +171,6 @@ function personalMessage(phoneNumber) {
         </div>,
       ];
       break;
-    case '78 018 67 52': // Zahra
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Yow Zahra demal Fane fadjou dji
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            Sa yaram nekhoul, il n'y a rien de gratuit ici
-          </span>
-          <span>
-            je voulais juste tester l'appli "{' '}
-            <span role='img' aria-label='sheep'>
-              😂
-            </span>
-          </span>
-        </div>,
-      ];
-      break;
     case '77 757 31 15': // Astou Diallo
       message = [
         <div className='message-body' key='personal-message'>
@@ -106,40 +183,6 @@ function personalMessage(phoneNumber) {
           </span>
           <span className='text-center' role='img' aria-label='sheep'>
             😂
-          </span>
-        </div>,
-      ];
-      break;
-    case '78 161 35 26': // Franc Tete
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Mister Franc yow mom nala livrel sa commande
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            Nandité ngua, l'application est juste en phase de test{' '}
-            <span role='img' aria-label='sheep'>
-              😉
-            </span>
-          </span>
-        </div>,
-      ];
-      break;
-    case '77 792 55 99': // Eva
-    case '77 969 73 52': // Eva
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Chere Mademoiselle Eva, Sachez que
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            " L'espoir fait vivre mais la Faim Tue
-          </span>
-          <span>
-            Restons affamé dans la dignité "{' '}
-            <span role='img' aria-label='sheep'>
-              😂
-            </span>
           </span>
         </div>,
       ];
@@ -178,24 +221,7 @@ function personalMessage(phoneNumber) {
         </div>,
       ];
       break;
-    case '77 439 82 00': // Nana
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Hey Takou Nana Sucrée yow wakhoumala ngua bayii yapeu?
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            En plus yow ak sa eumbeu fot bou reuy bi sagn ngua fi lékeu Burger?
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            demal regime way{' '}
-            <span role='img' aria-label='sheep'>
-              😂
-            </span>
-          </span>
-        </div>,
-      ];
-      break;
+
     case '77 265 40 43': // souley
       message = [
         <div className='message-body' key='personal-message'>
@@ -294,21 +320,6 @@ function personalMessage(phoneNumber) {
         </div>,
       ];
       break;
-    case '77 195 73 31': // Mame Fatou Agne
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Hey mon coeur koula bayii ngua placer fi commande di diay beuneulé?
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            respectel régime bii way{' '}
-            <span role='img' aria-label='sheep'>
-              😂
-            </span>
-          </span>
-        </div>,
-      ];
-      break;
     case '77 882 71 71': // Faye
       message = [
         <div className='message-body' key='personal-message'>
@@ -318,25 +329,6 @@ function personalMessage(phoneNumber) {
           </span>
           <span className='text-center' role='img' aria-label='sheep'>
             😂
-          </span>
-        </div>,
-      ];
-      break;
-    case '76 786 46 50': // Eduarda
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>Weuh!!! yow nak ya osé</span>
-          <span style={{ marginBottom: '5px' }}>
-            Ya def sa commande bou reuy bi ba togu di diay fokolé?
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            Hamburger bi deh dangua koy lékeu rek constiper à vie
-          </span>
-          <span>
-            Gnioussoul félé{' '}
-            <span role='img' aria-label='sheep'>
-              😂
-            </span>
           </span>
         </div>,
       ];
@@ -376,19 +368,6 @@ function personalMessage(phoneNumber) {
             <span role='img' aria-label='sheep'>
               😂
             </span>
-          </span>
-        </div>,
-      ];
-      break;
-    case '77 325 43 36': // khalil
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            El Capo yow sa burger mongui ley khar Maroc
-          </span>
-          <span style={{ marginBottom: '5px' }}>So demoul doko lekeu</span>
-          <span role='img' aria-label='sheep'>
-            😂
           </span>
         </div>,
       ];
@@ -741,35 +720,6 @@ function personalMessage(phoneNumber) {
         </div>,
       ];
       break;
-    case '78 437 85 20': // Astou Gueye
-    case '77 900 70 50': // Mamy Ndiaye
-    case '77 815 16 89': // Kine
-    case '77 749 56 23': // Astou Ndiaye
-    case '78 561 49 61': // Awa Mbene
-    case '77 966 05 48': // Diatou
-    case '77 160 68 48': // Penda
-    case '77 480 38 08': // Nadia
-    case '77 879 48 28': // Nadia
-    case '78 203 61 77': // Khadija Cissé
-    case '78 339 55 10': // Marie
-    case '77 217 93 87': // Yacine
-      message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            Hey way!!! yow nak ya fouy deug té beug waneu
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            Mey wakh ngua def sa commande bou reuy bi di diaye beuneulé
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            khamouma fo riffé mais doffi sourré
-          </span>
-          <span role='img' aria-label='sheep'>
-            😂
-          </span>
-        </div>,
-      ];
-      break;
     case '77 419 84 85': // Massoukha
       message = [
         <div className='message-body' key='personal-message'>
@@ -789,26 +739,26 @@ function personalMessage(phoneNumber) {
 
     default:
       message = [
-        <div className='message-body' key='personal-message'>
-          <span style={{ marginBottom: '5px' }}>
-            " L'espoir fait vivre mais la Faim tue
-          </span>
-          <span style={{ marginBottom: '5px' }}>
-            Restons affamé dans la dignité "
-          </span>
-          <span
-            className='text-right font-italic'
-            style={{ fontSize: '0.9rem' }}
-          >
-            Yves De La Molle Fesse
-          </span>
+        <div
+          className='message-body'
+          style={{ paddingLeft: '10px', paddingRight: '20px' }}
+          key='personal-message'
+        >
           <span>
-            Merci d'avoir testé l'Application je te dois personnellement un
-            Burger{' '}
-            <span role='img' aria-label='sheep'>
-              😂
-            </span>
+            Veuillez Patienter Svp! <br /> Ce gorille est chargé de vous envoyer
+            vottre commande
           </span>
+          {/* <span></span> */}
+          <img
+            src={gorillaImage}
+            alt='Gorilla'
+            width='150'
+            height='150'
+            style={{ objectFit: 'contain' }}
+          />
+          {/* <span role='img' aria-label='sheep'>
+            😂
+          </span> */}
         </div>,
       ];
       break;

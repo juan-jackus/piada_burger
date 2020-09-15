@@ -37,8 +37,8 @@ const BuildControls = ({
         <p className='mb-0 text-center px-1' style={{ color: '#242424' }}>
           Prix Actuel :
           <span className='font-weight-bold'>
-            {' '}
-            <span style={priceStyle}>{totalPrice}</span> XOF (Gratuit pour Vous)
+            <span style={priceStyle}>{totalPrice}</span> XOF (gratuit si vous
+            avez un code promo)
           </span>
         </p>
         <span
