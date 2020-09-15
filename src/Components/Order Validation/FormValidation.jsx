@@ -29,6 +29,7 @@ const FormValidation = ({
         .matches(phoneNumberRegex, 'Numéro de Telephone invalide')
         .required('Veuillez renseignez ce champ '),
     }),
+    deleveryMethod: Yup.string().required('Veuillez renseignez ce champ '),
   });
 
   return (
@@ -45,20 +46,20 @@ const FormValidation = ({
         <div className='px-3'>
           {/* User Name Input */}
           <FormikInput
-            fontAwsome='fa fa-user'
-            className='form-control text-capitalize'
-            type='text'
             name='userContacts.userName'
+            type='text'
+            className='form-control text-capitalize'
+            fontAwsome='fa fa-user'
             placeholder='Votre Nom'
           />
           {/* User Address Input */}
           <FormikInput
-            fontAwsome='fa fa-home'
-            className='form-control text-capitalize'
-            type='text'
-            autoFocus
             name='userContacts.address'
+            type='text'
+            className='form-control text-capitalize'
+            fontAwsome='fa fa-home'
             placeholder='Addresse'
+            autoFocus
           />
           {/* Use Field for Custom Handle Change to format Phone Number */}
           <Field name='userContacts.phoneNumber'>
@@ -72,8 +73,8 @@ const FormValidation = ({
                       </div>
                     </div>
                     <input
-                      className='form-control'
                       type='tel'
+                      className='form-control'
                       placeholder='Numero de telephone'
                       {...field}
                       onChange={(e) => {
@@ -97,14 +98,18 @@ const FormValidation = ({
           <div className='form-group d-flex flex-column'>
             <p className='mt-3 mb-2'>Temps de Livraison</p>
             <Field as='select' className='custom-select' name='deleveryMethod'>
-              <option value='rapide' disabled>
+              <option value='' disabled>
+                Selectionnez le delais de la livraison...
+              </option>
+              <option value='express' disabled>
                 Sous 1 Heures
               </option>
-              <option value='rapide' disabled>
+              <option value='fast' disabled>
                 Sous 3 Heures
               </option>
-              <option value='normale'>Sous 24 Heures</option>
+              <option value='normal'>Sous 7 Heures</option>
             </Field>
+            <ErrorMessage name='deleveryMethod' component={InputErrorMessage} />
             {/* Validate Order Button */}
             <button className=' mx-auto mt-4 btnStyle w-100 ' type='submit'>
               VALIDER LA COMMANDE

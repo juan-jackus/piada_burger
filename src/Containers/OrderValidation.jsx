@@ -21,19 +21,17 @@ class Validation extends PureComponent {
     let time = today.getHours() + ':' + today.getMinutes();
 
     today = mm + '/' + dd + '/' + yyyy + ' à ' + time;
-    // Get selected Ingredients
-    const ingredients = this.props.ingredients.filter(
-      (ingredient) => ingredient.count > 0
-    );
+
     // Put all Odered Item in one Obeject
     const oderSummary = {
-      ingredients: ingredients,
+      ingredients: this.props.ingredients,
       totalPrice: this.props.totalPrice2,
       userContacts: userContacts,
       deleveryMethod: deleveryMethod,
       date: today,
     };
-    // Add Other Items to Oder Summary if they are selected with (If Clause Guard Block)
+
+    // Add Other Items to Oder Summary if they are selected with
     if (this.props.selectedDrink)
       oderSummary.selectedDrink = this.props.selectedDrink;
     if (this.props.selectedFrie)
@@ -49,11 +47,11 @@ class Validation extends PureComponent {
     // Create OrderSummary
     const oderSummary = this.createOderSummary(formValues);
     // Get the Order table Reference in Database
-    const builderDatabase = piadaBurgerDatabase.child('orders');
+    const allOrdersDatabase = piadaBurgerDatabase.child('allOrders');
     // Get a autamatic ID from Database
-    const autoId = builderDatabase.push().key;
+    const autoId = allOrdersDatabase.push().key;
     // Add the Oder to Database
-    builderDatabase.child(autoId).set(oderSummary);
+    allOrdersDatabase.child(autoId).set(oderSummary);
     this.setState({
       showMessage: true,
       phoneNumber: formValues.userContacts.phoneNumber,

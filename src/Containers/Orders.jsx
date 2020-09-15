@@ -17,24 +17,30 @@ class Orders extends Component {
 
   componentDidMount() {
     this.retrieveOrders();
-    this.refreshOrders();
   }
 
   // Get the All Oders and initial Builder State from DataBase
   retrieveOrders = () => {
-    const builderDatabase = piadaBurgerDatabase;
-    builderDatabase.on('value', (snapshot) => {
-      this.setState({
-        orders: [snapshot.val().orders],
-        initialState: snapshot.val().builderState,
-      });
-    });
-  };
-
-  refreshOrders = (value) => {
-    if (value) {
+    if (this.state.retrieveAgainData) {
       this.setState({ retrieveAgainData: false });
     }
+
+    // Get a Reference to AllOrders and BuilderState
+    const builderState = piadaBurgerDatabase.child('builderState');
+    const allOrders = piadaBurgerDatabase.child('allOrders');
+
+    builderState.once('value', (snapshot) => {
+      this.setState({
+        initialState: snapshot.val(),
+      });
+    });
+    allOrders.once('value', (snapshot) => {
+      this.setState({
+        orders: [snapshot.val()],
+      });
+    });
+
+    // Show a Refresh Button after a timeout
     setTimeout(() => {
       if (this.state.orders === null) {
         this.setState({ retrieveAgainData: true });
@@ -42,17 +48,10 @@ class Orders extends Component {
     }, 7000);
   };
 
+  // Go to the Summary of clicked Order
   orderSummaryHandler = (id, number, orderSummary) => {
-    this.state.initialState.ingredients.forEach((element) => {
-      const checkIngredient = orderSummary.ingredients.find(
-        (ingredient) => ingredient.id === element.id
-      );
-      if (!checkIngredient) {
-        orderSummary.ingredients.push(element);
-      }
-    });
-
-    const copieState = { ...this.state.initialState, ...orderSummary };
+    // Copie initial state and update modify one with the order summary
+    const copieState = { ...this.state.initialState, ...orderSummary, id };
     this.setState({ orderSummary: copieState }, () => {
       this.props.history.push('/orders/' + id + '_' + number);
     });
@@ -61,8 +60,9 @@ class Orders extends Component {
   render() {
     return (
       <div className=' container ' id='orders-wrapper'>
+        {/* Show this message and refresh button when retrieve orders fail */}
         {this.state.retrieveAgainData ? (
-          <div className='retrieveDataMessage'>
+          <div className='pt-5 retrieveDataMessage'>
             <p>
               Un probléme est survenu lors de la recupération des commande
               <br />
@@ -70,13 +70,9 @@ class Orders extends Component {
               <br />
               en appuyant sur le boutton ci dessous
             </p>
-            <img
-              src={arrowRefresh}
-              alt=''
-              onClick={() => this.refreshOrders(true)}
-            />
+            <img src={arrowRefresh} alt='' onClick={this.retrieveOrders} />
           </div>
-        ) : this.state.orders ? (
+        ) : this.state.orders ? ( // Check if there is Order and Render them
           <>
             <Route
               path='/orders'

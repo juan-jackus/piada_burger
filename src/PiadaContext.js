@@ -13,6 +13,11 @@ export const PiadaProvider = (props) => {
     localStorage.setItem('username', username);
   };
 
+  const signUpHandler = (values) => {
+    showModalHandler(false);
+    console.log(values);
+  };
+
   const logOutHandler = () => {
     setLogin(false);
     setUsername('');
@@ -30,6 +35,7 @@ export const PiadaProvider = (props) => {
         login,
         username,
         logInHandler,
+        signUpHandler,
         logOutHandler,
         showLoginForm,
         showModalHandler,

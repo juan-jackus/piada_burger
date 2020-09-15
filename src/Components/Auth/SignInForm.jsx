@@ -7,11 +7,26 @@ import { Formik, Form } from 'formik';
 import FormikInput from '../Formik/FormikInput.jsx';
 import * as Yup from 'yup';
 
-function SignInForm({ initialValues, onSubmit }) {
+function SignInForm() {
   // Get the Show Login Form Setter From Piada Context
-  const { showModalHandler } = useContext(PiadaContext);
+  const { logInHandler, showModalHandler } = useContext(PiadaContext);
+
+  // Sign In Form Initial Values
+  const initialSignInValues = {
+    firstName: '',
+    lastName: '',
+  };
+
+  // Sign In Submit Handler
+  const signInSubmitHandler = (values) => {
+    showModalHandler(false);
+    const username = values.firstName + ' ' + values.lastName;
+    logInHandler(username);
+  };
+
   // RegEx for Yup Validation Schema
   const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
   // Yup Validation Schema
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -45,9 +60,9 @@ function SignInForm({ initialValues, onSubmit }) {
       <p className='text-center'>Entrez votre Prenom et Nom</p>
 
       <Formik
-        initialValues={initialValues}
+        initialValues={initialSignInValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={signInSubmitHandler}
         validateOnChange={false}
         // validateOnBlur={false}
       >
@@ -55,20 +70,20 @@ function SignInForm({ initialValues, onSubmit }) {
         <Form id='signin-form'>
           {/* User First Name Input */}
           <FormikInput
-            fontAwsome='fa fa-user'
-            className='form-control text-capitalize'
+            name='firstName'
             type='text'
             id='inputEmail'
-            name='firstName'
+            className='form-control text-capitalize'
+            fontAwsome='fa fa-user'
             placeholder='Prenom'
           />
           {/* User last Name Input */}
           <FormikInput
-            fontAwsome='fa fa-lock'
-            className='form-control text-uppercase'
+            name='lastName'
             type='text'
             id='inputPassword'
-            name='lastName'
+            className='form-control text-uppercase'
+            fontAwsome='fa fa-user'
             placeholder='Nom'
           />
 
