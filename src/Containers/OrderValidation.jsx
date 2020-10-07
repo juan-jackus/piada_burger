@@ -1,15 +1,18 @@
 import React, { PureComponent } from 'react';
 import { piadaBurgerDatabase } from '../firebase';
+import { PiadaContext } from '../PiadaContext';
 
 import OrderValidationForm from '../Components/Order Validation/OrderValidationForm';
 import ValidationMessage from '../Components/Order Validation/ValidationMessage/ValidationMessage';
 
 class Validation extends PureComponent {
-  //
   state = {
     phoneNumber: null,
     showMessage: false,
   };
+
+  // Get context
+  static contextType = PiadaContext;
 
   // Get All Odered Item
   createOderSummary = ({ userContacts, deleveryMethod }) => {
@@ -30,7 +33,6 @@ class Validation extends PureComponent {
       deleveryMethod: deleveryMethod,
       date: today,
     };
-
     // Add Other Items to Oder Summary if they are selected with
     if (this.props.selectedDrink)
       oderSummary.selectedDrink = this.props.selectedDrink;
@@ -46,12 +48,15 @@ class Validation extends PureComponent {
   ValidateOder = (formValues) => {
     // Create OrderSummary
     const oderSummary = this.createOderSummary(formValues);
+    // Get the current user uid
+    const uid = this.context.user.uid;
     // Get the Order table Reference in Database
-    const allOrdersDatabase = piadaBurgerDatabase.child('allOrders');
+    const builderDatabase = piadaBurgerDatabase.child('users/' + uid);
+
     // Get a autamatic ID from Database
-    const autoId = allOrdersDatabase.push().key;
+    const autoId = builderDatabase.push().key;
     // Add the Oder to Database
-    allOrdersDatabase.child(autoId).set(oderSummary);
+    builderDatabase.child(autoId).set(oderSummary);
     this.setState({
       showMessage: true,
       phoneNumber: formValues.userContacts.phoneNumber,
@@ -59,6 +64,7 @@ class Validation extends PureComponent {
   };
 
   render() {
+    // console.log(this.context.user.uid);
     return (
       <>
         <OrderValidationForm ValidateOder={this.ValidateOder} />

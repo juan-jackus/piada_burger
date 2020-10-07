@@ -1,6 +1,6 @@
 import firebaseApp from 'firebase/app';
 import 'firebase/database';
-// import 'firebase/auth';
+import 'firebase/auth';
 
 const config = {
   apiKey: 'AIzaSyBLTEpT5hQ5eJx6hj57yOC2HrgW-xGQQQk',
@@ -14,4 +14,4 @@ const config = {
 };
 const firebase = firebaseApp.initializeApp(config);
 export const piadaBurgerDatabase = firebase.database().ref();
-// export const auth = firebase.auth();
+export const auth = firebase.auth();

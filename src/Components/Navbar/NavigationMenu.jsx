@@ -10,7 +10,7 @@ function NavigationMenu({
   builderText,
 }) {
   // Get the Login Value, showModalHandler and LogOutHandler From Piada Context
-  const { logOutHandler, login, showModalHandler } = useContext(PiadaContext);
+  const { logOutHandler, user, showModalHandler } = useContext(PiadaContext);
   // Assign the JSX for the Oder and Logout Menu to a variable
   const oderLogoutMenu = [
     // Oder Menu
@@ -53,7 +53,7 @@ function NavigationMenu({
     // Login Menu
     <li
       className='nav-item '
-      key='login'
+      key='user'
       data-toggle='collapse'
       data-target={collapseNavbar}
     >
@@ -90,7 +90,7 @@ function NavigationMenu({
           </div>
         </li>
         {/* Show Oders Menu and Logout button when Login  */}
-        {login ? oderLogoutMenu : loginMenu}
+        {user ? oderLogoutMenu : loginMenu}
       </ul>
     </div>
   );

@@ -5,12 +5,18 @@ import FormikInput from '../Formik/FormikInput.jsx';
 import * as Yup from 'yup';
 import arrow2 from '../../Assets/arrows/signup-arrow.png';
 
-const SignUpForm = () => {
-  // Get showModalHandler From Piada Context
-  const { signUpHandler, showModalHandler } = useContext(PiadaContext);
+function SignUpForm() {
+  // Get data From Piada Context
+  const {
+    singUpHandler,
+    showModalHandler,
+    authSpinner,
+    authError,
+    setAuthError,
+  } = useContext(PiadaContext);
 
   // Sign Up Form Initial Values
-  const initialSignUpValues = {
+  const initialValues = {
     userName: '',
     signupEmail: '',
     signupPassword: '',
@@ -28,23 +34,25 @@ const SignUpForm = () => {
   const uppercaseRegex = /(?=.*[A-Z])/;
   const lowercaseRegex = /(?=.*[a-z])/;
   const numberRegex = /(?=.*[0-9])/;
-  // const usernameRegex = /^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
-  const usernameRegex1 = /^.[a-zA-Z0-9_.]+$/; // allowed characters
-  const usernameRegex2 = /^(?![_.])/; // no "_" or "." at the beginning
-  const usernameRegex3 = /^(?!.*[_.]{2})/; // no "__" or "_." or "._" or ".." inside
-  const usernameRegex4 = /(?<![_.])$/; // no "_" or "." at the end
+  const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+  // const usernameRegex1 = /^.[a-zA-Z0-9_.]+$/; // allowed characters
+  // const usernameRegex2 = /^(?![_.])/; // no "_" or "." at the beginning
+  // const usernameRegex3 = /^(?!.*[_.]{2})/; // no "__" or "_." or "._" or ".." inside
+  // const usernameRegex4 = /(?<![_.])$/; // no "_" or "." at the end
 
   // Yup Validation Schema
   const validationSchema = Yup.object().shape({
+    // userName: Yup.string()
+    //   .max(8, 'La limite de caractéres (8) a été dépassèe')
+    //   .matches(usernameRegex4, 'Pas de caractére "_" ou "." à la fin')
+    //   .matches(usernameRegex3, 'Pas de caractére "_" ou "." consécutifs')
+    //   .matches(usernameRegex2, 'Pas de caractére "_" ou "." au debut ')
+    //   .matches(usernameRegex1, 'Caratéres Alphanumérique sont autorisés')
+    //   .min(3, 'Nom trop court')
+    //   .required('Veuillez renseignez ce champ '),
     userName: Yup.string()
-      .max(8, 'La limite de caractéres (8) a été dépassèe')
-      .matches(usernameRegex4, 'Pas de caractére "_" ou "." à la fin')
-      .matches(usernameRegex3, 'Pas de caractére "_" ou "." consécutifs')
-      .matches(usernameRegex2, 'Pas de caractére "_" ou "." au debut ')
-      .matches(
-        usernameRegex1,
-        'Seul les caratéres Alphanumérique, "_" et "." sont autorisés'
-      )
+      .max(50, 'La limite de caractéres (50) a été dépassèe')
+      .matches(nameRegex, 'Nom invalide')
       .min(3, 'Nom trop court')
       .required('Veuillez renseignez ce champ '),
     signupEmail: Yup.string()
@@ -53,7 +61,6 @@ const SignUpForm = () => {
       .notOneOf(alreadyTakenEmail, 'Adresse Email non disponible')
       .required('Veuillez renseignez ce champ '),
     signupPassword: Yup.string()
-      .max(50, 'Mot de passe trop long')
       .matches(numberRegex, 'Doit contenir au moins un chiffre')
       .matches(uppercaseRegex, 'Doit contenir au moins une lettre majuscule')
       .matches(lowercaseRegex, 'Doit contenir au moins une lettre minuscule')
@@ -64,6 +71,13 @@ const SignUpForm = () => {
       .required('Veuillez renseignez ce champ '),
   });
 
+  // Set a time out to show the default message error
+  if (authError.name === 'defaultError') {
+    setTimeout(() => {
+      setAuthError({});
+    }, 7000);
+  }
+
   return (
     <div id='singUpFom' className='carousel-item '>
       <h2 className='text-center text-white px-1 mt-3'>Creer un Compte</h2>
@@ -72,10 +86,10 @@ const SignUpForm = () => {
       </p>
       <hr />
       <Formik
-        initialValues={initialSignUpValues}
+        initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={signUpHandler}
         validateOnChange={false}
+        onSubmit={singUpHandler}
         // validateOnBlur={false}
       >
         <Form id='signup-form'>
@@ -84,37 +98,48 @@ const SignUpForm = () => {
             type='text'
             id='singupUser'
             className='form-control text-capitalize'
+            placeholder='Prenom & Nom'
             fontAwsome='fa fa-user'
-            placeholder='Pseudonyme'
           />
           <FormikInput
             name='signupEmail'
             type='email'
             id='singnupEmail'
             className='form-control'
-            fontAwsome='fa fa-paper-plane'
             placeholder='Email'
+            fontAwsome='fa fa-paper-plane'
           />
           <FormikInput
             name='signupPassword'
             type='password'
             id='signupPassword'
             className='form-control'
-            fontAwsome='fa fa-lock'
             placeholder='Mot de passe'
+            fontAwsome='fa fa-lock'
           />
           <FormikInput
             name='confirmPassword'
             type='password'
             id='signupPassword2'
             className='form-control'
+            placeholder='Confirmer le Mot de passe'
             fontAwsome='fa fa-check'
-            placeholder='Confirmer le mot de passe'
           />
-          {/* Validate Button */}
+          {/* Submit Button */}
           <button type='submit' className='cancel-btn w-100 mx-auto my-3'>
-            VALIDER
+            {/* Show Spinner when Authentication is in progress */}
+            {authSpinner ? (
+              <div className='spinner-border text-light' role='status'>
+                <span className='sr-only'>Loading...</span>
+              </div>
+            ) : (
+              'VALIDER'
+            )}
           </button>
+          {/* Show Default Authentication error message if auth fail */}
+          {authError.name === 'defaultError' && (
+            <div className='default-error-message'>{authError.message}</div>
+          )}
         </Form>
       </Formik>
       <p className='small text-center px-1'>
@@ -143,6 +168,6 @@ const SignUpForm = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SignUpForm;

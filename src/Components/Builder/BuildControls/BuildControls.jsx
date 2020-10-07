@@ -12,7 +12,7 @@ const BuildControls = ({
   ...props
 }) => {
   // Get the Login Value and showModalHandler From Piada Context
-  const { login, showModalHandler } = useContext(PiadaContext);
+  const { user, showModalHandler } = useContext(PiadaContext);
   // Array of all existing Ingredient for rendering in Build Controls
   const all_ingredients = [
     'laitue',
@@ -67,13 +67,13 @@ const BuildControls = ({
         className='btnStyle '
         disabled={totalPrice <= basePrice}
         onClick={
-          login
+          user
             ? () => props.history.push('/checkout')
             : () => showModalHandler(true)
         }
       >
         {/* show different text if user is login or not */}
-        {login ? 'COMMANDEZ' : 'ENTREZ VOTRE NOM POUR COMMANDER'}
+        {user ? 'COMMANDEZ' : 'ENTREZ VOTRE NOM POUR COMMANDER'}
       </button>
     </div>
   );

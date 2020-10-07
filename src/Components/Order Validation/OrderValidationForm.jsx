@@ -3,17 +3,17 @@ import { PiadaContext } from '../../PiadaContext';
 import FormValidation from './FormValidation';
 
 const OrderValidationForm = ({ ValidateOder }) => {
-  // Get the username Value from Piada Context
-  const { username } = useContext(PiadaContext);
+  // Get the userName Value from Piada Context
+  const { user } = useContext(PiadaContext);
 
   // Form Initial Values
   const initialValues = {
     userContacts: {
-      userName: username,
+      userName: user.displayName,
       address: '',
       phoneNumber: '',
     },
-    deleveryMethod: 'normal',
+    deleveryMethod: '',
   };
 
   // Handle all User Input

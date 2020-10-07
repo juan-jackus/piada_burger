@@ -12,7 +12,7 @@ function ValidationMessage({ phoneNumber }) {
     // Set a Time Out to Show the close Button of Message
     setTimeout(() => {
       setStyle('d-block');
-    }, 10000);
+    }, 7000);
     // reactivate The Scrool when Component Will Unmount
     return () => {
       document.body.style.overflow = 'auto';

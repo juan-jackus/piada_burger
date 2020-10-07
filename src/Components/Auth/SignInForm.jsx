@@ -1,45 +1,43 @@
 import React, { useContext } from 'react';
 import { PiadaContext } from '../../PiadaContext';
-import userLoginPng from '../../Assets/userLogin.png';
-import userLoginWebp from '../../Assets/userLogin.webp';
-import arrow from '../../Assets/arrows/signin-arrow.png';
 import { Formik, Form } from 'formik';
-import FormikInput from '../Formik/FormikInput.jsx';
 import * as Yup from 'yup';
+import FormikInput from '../Formik/FormikInput.jsx';
+
+import userLoginWebp from '../../Assets/userLogin.webp';
+import userLoginPng from '../../Assets/userLogin.png';
+import arrow from '../../Assets/arrows/signin-arrow.png';
 
 function SignInForm() {
-  // Get the Show Login Form Setter From Piada Context
-  const { logInHandler, showModalHandler } = useContext(PiadaContext);
+  // Get data From Piada Context
+  const {
+    logInHandler,
+    authError,
+    setAuthError,
+    showModalHandler,
+    authSpinner,
+  } = useContext(PiadaContext);
 
   // Sign In Form Initial Values
-  const initialSignInValues = {
-    firstName: '',
-    lastName: '',
+  const initialValues = {
+    signinEmail: '',
+    signinPassword: '',
   };
-
-  // Sign In Submit Handler
-  const signInSubmitHandler = (values) => {
-    showModalHandler(false);
-    const username = values.firstName + ' ' + values.lastName;
-    logInHandler(username);
-  };
-
-  // RegEx for Yup Validation Schema
-  const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 
   // Yup Validation Schema
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .max(50, 'La limite de caractéres (50) a été dépassèe')
-      .matches(nameRegex, 'Prénom invalide')
-      .min(3, 'Prénom trop court')
+    signinEmail: Yup.string()
+      .email('Addresse Email Invalide')
       .required('Veuillez renseignez ce champ '),
-    lastName: Yup.string()
-      .max(30, 'La limite de caractéres (30) a été dépassèe')
-      .matches(nameRegex, 'Nom invalide')
-      .min(2, 'Prénom trop court')
-      .required('Veuillez renseignez ce champ '),
+    signinPassword: Yup.string().required('Veuillez renseignez ce champ '),
   });
+
+  // Set a time out to show the default message error
+  if (authError.name === 'defaultError') {
+    setTimeout(() => {
+      setAuthError({});
+    }, 7000);
+  }
 
   return (
     <div id='signInForm' className='carousel-item active'>
@@ -57,34 +55,34 @@ function SignInForm() {
         <h3 className=' text-center text-white col-6'>Bienvenue</h3>
         <span className='col-3 p-0 loginline'></span>
       </div>
-      <p className='text-center'>Entrez votre Prenom et Nom</p>
+      <p className='text-center'>Entrez votre Email et Mot de Passe</p>
 
       <Formik
-        initialValues={initialSignInValues}
+        initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={signInSubmitHandler}
         validateOnChange={false}
+        onSubmit={logInHandler}
         // validateOnBlur={false}
       >
         {/* {({ dirty, isValid }) => ( */}
         <Form id='signin-form'>
           {/* User First Name Input */}
           <FormikInput
-            name='firstName'
+            name='signinEmail'
             type='text'
             id='inputEmail'
-            className='form-control text-capitalize'
+            className='form-control'
+            placeholder='Email'
             fontAwsome='fa fa-user'
-            placeholder='Prenom'
           />
           {/* User last Name Input */}
           <FormikInput
-            name='lastName'
-            type='text'
+            name='signinPassword'
+            type='password'
             id='inputPassword'
-            className='form-control text-uppercase'
-            fontAwsome='fa fa-user'
-            placeholder='Nom'
+            className='form-control'
+            placeholder='Mot de passe'
+            fontAwsome='fa fa-lock'
           />
 
           <button
@@ -92,8 +90,19 @@ function SignInForm() {
             className='cancel-btn w-100 mx-auto mt-3'
             // disabled={!(dirty && isValid)}
           >
-            SE CONNECTER
+            {/* Show Spinner when Authentication is in progress */}
+            {authSpinner ? (
+              <div className='spinner-border text-light' role='status'>
+                <span className='sr-only'>Loading...</span>
+              </div>
+            ) : (
+              'SE CONNECTER'
+            )}
           </button>
+          {/* Show Default Authentication error message if auth fail */}
+          {authError.name === 'defaultError' && (
+            <div className='default-error-message'>{authError.message}</div>
+          )}
         </Form>
         {/* )} */}
       </Formik>

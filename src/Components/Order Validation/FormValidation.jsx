@@ -19,7 +19,7 @@ const FormValidation = ({
       userName: Yup.string()
         .max(50, 'La limite de caractéres (50) a été dépassèe')
         .matches(nameRegex, 'Nom invalide')
-        .min(5, 'Nom trop court')
+        .min(3, 'Nom trop court')
         .required('Veuillez renseignez ce champ '),
       address: Yup.string()
         .max(50, 'La limite de caractéres (50) a été dépassèe')
@@ -46,20 +46,20 @@ const FormValidation = ({
         <div className='px-3'>
           {/* User Name Input */}
           <FormikInput
-            name='userContacts.userName'
-            type='text'
-            className='form-control text-capitalize'
             fontAwsome='fa fa-user'
+            className='form-control text-capitalize'
+            type='text'
+            name='userContacts.userName'
             placeholder='Votre Nom'
           />
           {/* User Address Input */}
           <FormikInput
-            name='userContacts.address'
-            type='text'
-            className='form-control text-capitalize'
             fontAwsome='fa fa-home'
-            placeholder='Addresse'
+            className='form-control text-capitalize'
+            type='text'
             autoFocus
+            name='userContacts.address'
+            placeholder='Addresse'
           />
           {/* Use Field for Custom Handle Change to format Phone Number */}
           <Field name='userContacts.phoneNumber'>
@@ -73,8 +73,8 @@ const FormValidation = ({
                       </div>
                     </div>
                     <input
-                      type='tel'
                       className='form-control'
+                      type='tel'
                       placeholder='Numero de telephone'
                       {...field}
                       onChange={(e) => {
@@ -101,12 +101,8 @@ const FormValidation = ({
               <option value='' disabled>
                 Selectionnez le delais de la livraison...
               </option>
-              <option value='express' disabled>
-                Sous 1 Heures
-              </option>
-              <option value='fast' disabled>
-                Sous 3 Heures
-              </option>
+              <option value='express'>Sous 1 Heures</option>
+              <option value='fast'>Sous 3 Heures</option>
               <option value='normal'>Sous 7 Heures</option>
             </Field>
             <ErrorMessage name='deleveryMethod' component={InputErrorMessage} />

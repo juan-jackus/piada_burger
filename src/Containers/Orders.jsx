@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { piadaBurgerDatabase } from '../firebase';
+import { PiadaContext } from '../PiadaContext';
 import { Route } from 'react-router-dom';
 import { RollerLoader } from '../Components/Loader/Spiner';
 import arrowRefresh from '../Assets/arrows/arrow-refresh.svg';
@@ -9,11 +10,14 @@ import OrderSummary from '../Components/Orders/OrderSummary';
 
 class Orders extends Component {
   state = {
+    initialState: null,
     orders: null,
     orderSummary: null,
-    initialState: null,
     retrieveAgainData: false,
   };
+
+  // Get context
+  static contextType = PiadaContext;
 
   componentDidMount() {
     this.retrieveOrders();
@@ -24,19 +28,25 @@ class Orders extends Component {
     if (this.state.retrieveAgainData) {
       this.setState({ retrieveAgainData: false });
     }
+    // Get the current user uid
+    const uid = this.context.user.uid;
 
-    // Get a Reference to AllOrders and BuilderState
-    const builderState = piadaBurgerDatabase.child('builderState');
-    const allOrders = piadaBurgerDatabase.child('allOrders');
+    // Get Users and BulderState Ref Database
+    const usersDatabase = piadaBurgerDatabase.child('users/' + uid);
+    const builderStateDatabase = piadaBurgerDatabase.child('builderState');
 
-    builderState.once('value', (snapshot) => {
-      this.setState({
-        initialState: snapshot.val(),
-      });
-    });
-    allOrders.once('value', (snapshot) => {
+    // Get User Orders from database and set the state
+    usersDatabase.once('value', (snapshot) => {
       this.setState({
         orders: [snapshot.val()],
+        retrieveAgainData: false,
+      });
+    });
+
+    // Get Builder State Once and set the initialState
+    builderStateDatabase.once('value', (snapshot) => {
+      this.setState({
+        initialState: snapshot.val(),
       });
     });
 
@@ -55,6 +65,16 @@ class Orders extends Component {
     this.setState({ orderSummary: copieState }, () => {
       this.props.history.push('/orders/' + id + '_' + number);
     });
+  };
+
+  // Method to delete a order
+  deleteOrderHandler = (id) => {
+    // Get the current user uid
+    const uid = this.context.user.uid;
+    // Get User Order Ref
+    const userOrderRef = piadaBurgerDatabase.child('users/' + uid);
+    // Remove the Order by his ID
+    userOrderRef.child(id).remove();
   };
 
   render() {
@@ -87,11 +107,16 @@ class Orders extends Component {
             <Route
               path='/orders/:id'
               render={() => (
-                <OrderSummary orderSummary={this.state.orderSummary} />
+                <OrderSummary
+                  orderSummary={this.state.orderSummary}
+                  deleteOrderHandler={this.deleteOrderHandler}
+                  retrieveOrders={this.retrieveOrders}
+                />
               )}
             />
           </>
         ) : (
+          // Show a loader in rendering process
           <RollerLoader />
         )}
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { PiadaContext } from './PiadaContext';
 
@@ -8,22 +8,13 @@ import Auth from './Containers/Auth';
 import Orders from './Containers/Orders';
 
 const App = () => {
-  // Get Login, LogInHandler and ShowLoginForm From Piada Context
-  const { login, logInHandler, showLoginForm } = useContext(PiadaContext);
-
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    // Persistent Login if user already Log In
-    if (username) {
-      logInHandler(username);
-    }
-  }, [logInHandler]);
+  const { user, showLoginForm } = useContext(PiadaContext);
 
   return (
     <div id='main-div'>
       <Navbar />
       <Switch>
-        {login && <Route path='/orders' component={Orders} />}
+        {user && <Route path='/orders' component={Orders} />}
         <Route path='/' render={() => <Builder />} />
       </Switch>
       {showLoginForm && <Auth />}

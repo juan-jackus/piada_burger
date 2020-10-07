@@ -14,6 +14,7 @@ function Card({ orderSummary, number, orderSummaryHandler, id }) {
       delevery = 'Normale (moins de 7 heures)';
       break;
   }
+
   return (
     <div
       className='card order-card'
