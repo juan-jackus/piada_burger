@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from './../../ReduxStore/actions';
 import { NavLink } from 'react-router-dom';
-import { PiadaContext } from '../../PiadaContext';
 
 function NavigationMenu({
   target,
@@ -8,9 +9,8 @@ function NavigationMenu({
   toggleClass,
   onPaths,
   builderText,
+  ...props
 }) {
-  // Get the Login Value, showModalHandler and LogOutHandler From Piada Context
-  const { logOutHandler, user, showModalHandler } = useContext(PiadaContext);
   // Assign the JSX for the Oder and Logout Menu to a variable
   const oderLogoutMenu = [
     // Oder Menu
@@ -41,7 +41,7 @@ function NavigationMenu({
         className='nav-link text-white p-3'
         onClick={() => {
           toggleClass(target);
-          logOutHandler();
+          props.logOutHandler();
         }}
       >
         Deconnexion
@@ -61,7 +61,7 @@ function NavigationMenu({
         className='nav-link text-white p-3'
         onClick={() => {
           toggleClass(target);
-          showModalHandler(true);
+          props.showModalHandler(true);
         }}
       >
         Se Connecter
@@ -90,10 +90,23 @@ function NavigationMenu({
           </div>
         </li>
         {/* Show Oders Menu and Logout button when Login  */}
-        {user ? oderLogoutMenu : loginMenu}
+        {props.user ? oderLogoutMenu : loginMenu}
       </ul>
     </div>
   );
 }
 
-export default NavigationMenu;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showModalHandler: (val) => dispatch(actions.showModalHandler(val)),
+    logOutHandler: () => dispatch(actions.logOutHandler()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationMenu);

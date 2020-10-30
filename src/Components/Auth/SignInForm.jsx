@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { PiadaContext } from '../../PiadaContext';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from './../../ReduxStore/actions';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import FormikInput from '../Formik/FormikInput.jsx';
@@ -8,16 +9,7 @@ import userLoginWebp from '../../Assets/userLogin.webp';
 import userLoginPng from '../../Assets/userLogin.png';
 import arrow from '../../Assets/arrows/signin-arrow.png';
 
-function SignInForm() {
-  // Get data From Piada Context
-  const {
-    logInHandler,
-    authError,
-    setAuthError,
-    showModalHandler,
-    authSpinner,
-  } = useContext(PiadaContext);
-
+function SignInForm(props) {
   // Sign In Form Initial Values
   const initialValues = {
     signinEmail: '',
@@ -33,9 +25,9 @@ function SignInForm() {
   });
 
   // Set a time out to show the default message error
-  if (authError.name === 'defaultError') {
+  if (props.authError.name === 'defaultError') {
     setTimeout(() => {
-      setAuthError({});
+      props.setAuthError({});
     }, 7000);
   }
 
@@ -61,7 +53,7 @@ function SignInForm() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         validateOnChange={false}
-        onSubmit={logInHandler}
+        onSubmit={props.logInHandler}
         // validateOnBlur={false}
       >
         {/* {({ dirty, isValid }) => ( */}
@@ -91,7 +83,7 @@ function SignInForm() {
             // disabled={!(dirty && isValid)}
           >
             {/* Show Spinner when Authentication is in progress */}
-            {authSpinner ? (
+            {props.authSpinner ? (
               <div className='spinner-border text-light' role='status'>
                 <span className='sr-only'>Loading...</span>
               </div>
@@ -100,8 +92,10 @@ function SignInForm() {
             )}
           </button>
           {/* Show Default Authentication error message if auth fail */}
-          {authError.name === 'defaultError' && (
-            <div className='default-error-message'>{authError.message}</div>
+          {props.authError.name === 'defaultError' && (
+            <div className='default-error-message'>
+              {props.authError.message}
+            </div>
           )}
         </Form>
         {/* )} */}
@@ -112,7 +106,7 @@ function SignInForm() {
         <button
           type='button'
           className='signin-close'
-          onClick={() => showModalHandler(false)}
+          onClick={() => props.showModalHandler(false)}
         >
           Fermer
         </button>
@@ -131,4 +125,20 @@ function SignInForm() {
   );
 }
 
-export default SignInForm;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.authError,
+    authSpinner: state.authSpinner,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logInHandler: ({ signinEmail, signinPassword }) =>
+      dispatch(actions.logInHandler(signinEmail, signinPassword)),
+    showModalHandler: (val) => dispatch(actions.showModalHandler(val)),
+    setAuthError: (val) => dispatch(actions.setAuthError(val)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

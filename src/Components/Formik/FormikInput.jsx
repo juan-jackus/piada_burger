@@ -1,11 +1,10 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
+import * as actions from './../../ReduxStore/actions';
 import { Field, ErrorMessage } from 'formik';
-import { PiadaContext } from '../../PiadaContext';
 import InputErrorMessage from './InputErrorMessage.jsx';
 
-function FormikInput({ fontAwsome, ...props }) {
-  // Get Authentication error message
-  const { authError, setAuthError } = useContext(PiadaContext);
+function FormikInput({ fontAwsome, authError, setAuthError, ...props }) {
   // Get a reference to The password input element
   const passwordInput = useRef(null);
   // Time out to show auth error message
@@ -68,4 +67,16 @@ function FormikInput({ fontAwsome, ...props }) {
   );
 }
 
-export default FormikInput;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.authError,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setAuthError: (val) => dispatch(actions.setAuthError(val)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormikInput);

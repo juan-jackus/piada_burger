@@ -1,27 +1,50 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
+import { auth } from './firebase';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { PiadaContext } from './PiadaContext';
+import { connect } from 'react-redux';
+import * as actions from './ReduxStore/actions';
 
 import Navbar from './Components/Navbar/Navbar';
 import Builder from './Containers/Builder';
 import Auth from './Containers/Auth';
 import Orders from './Containers/Orders';
 
-const App = () => {
-  const { user, showLoginForm } = useContext(PiadaContext);
+const App = (props) => {
+  useEffect(() => {
+    // Listen to Auth change to set user
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        props.authStateChanged(authUser);
+      }
+    });
+  });
 
   return (
     <div id='main-div'>
       <Navbar />
       <Switch>
-        {user && <Route path='/orders' component={Orders} />}
+        {props.user && <Route path='/orders' component={Orders} />}
         <Route path='/' render={() => <Builder />} />
       </Switch>
-      {showLoginForm && <Auth />}
+      {props.showLoginForm && <Auth />}
 
       <Redirect to='/' />
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    showLoginForm: state.showLoginForm,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authStateChanged: (authUser) =>
+      dispatch(actions.authStateChanged(authUser)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
