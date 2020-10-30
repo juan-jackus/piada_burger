@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { piadaBurgerDatabase } from '../firebase';
-import { PiadaContext } from '../PiadaContext';
 import { Route } from 'react-router-dom';
 import { RollerLoader } from '../Components/Loader/Spiner';
 import arrowRefresh from '../Assets/arrows/arrow-refresh.svg';
@@ -16,9 +16,6 @@ class Orders extends Component {
     retrieveAgainData: false,
   };
 
-  // Get context
-  static contextType = PiadaContext;
-
   componentDidMount() {
     this.retrieveOrders();
   }
@@ -29,7 +26,7 @@ class Orders extends Component {
       this.setState({ retrieveAgainData: false });
     }
     // Get the current user uid
-    const uid = this.context.user.uid;
+    const uid = this.props.user.uid;
 
     // Get Users and BulderState Ref Database
     const usersDatabase = piadaBurgerDatabase.child('users/' + uid);
@@ -70,7 +67,7 @@ class Orders extends Component {
   // Method to delete a order
   deleteOrderHandler = (id) => {
     // Get the current user uid
-    const uid = this.context.user.uid;
+    const uid = this.props.user.uid;
     // Get User Order Ref
     const userOrderRef = piadaBurgerDatabase.child('users/' + uid);
     // Remove the Order by his ID
@@ -124,4 +121,10 @@ class Orders extends Component {
   }
 }
 
-export default Orders;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Orders);

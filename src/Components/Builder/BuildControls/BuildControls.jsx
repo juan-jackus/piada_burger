@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../ReduxStore/actions';
 import { withRouter } from 'react-router-dom';
 import Control from './Control';
-import { PiadaContext } from '../../../PiadaContext';
 // Props Destructuring
 const BuildControls = ({
   ingredients,
@@ -11,8 +12,6 @@ const BuildControls = ({
   pathNavigation,
   ...props
 }) => {
-  // Get the Login Value and showModalHandler From Piada Context
-  const { user, showModalHandler } = useContext(PiadaContext);
   // Array of all existing Ingredient for rendering in Build Controls
   const all_ingredients = [
     'laitue',
@@ -67,16 +66,31 @@ const BuildControls = ({
         className='btnStyle '
         disabled={totalPrice <= basePrice}
         onClick={
-          user
+          props.user
             ? () => props.history.push('/checkout')
-            : () => showModalHandler(true)
+            : () => props.showModalHandler(true)
         }
       >
         {/* show different text if user is login or not */}
-        {user ? 'COMMANDEZ' : 'ENTREZ VOTRE NOM POUR COMMANDER'}
+        {props.user ? 'COMMANDEZ' : 'ENTREZ VOTRE NOM POUR COMMANDER'}
       </button>
     </div>
   );
 };
 
-export default withRouter(BuildControls);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showModalHandler: (val) => dispatch(actions.showModalHandler(val)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(BuildControls));

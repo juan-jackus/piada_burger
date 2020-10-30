@@ -1,20 +1,12 @@
-import React, { useContext } from 'react';
-import { PiadaContext } from '../../PiadaContext';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from './../../ReduxStore/actions';
 import { Formik, Form } from 'formik';
 import FormikInput from '../Formik/FormikInput.jsx';
 import * as Yup from 'yup';
 import arrow2 from '../../Assets/arrows/signup-arrow.png';
 
-function SignUpForm() {
-  // Get data From Piada Context
-  const {
-    singUpHandler,
-    showModalHandler,
-    authSpinner,
-    authError,
-    setAuthError,
-  } = useContext(PiadaContext);
-
+function SignUpForm(props) {
   // Sign Up Form Initial Values
   const initialValues = {
     userName: '',
@@ -72,9 +64,9 @@ function SignUpForm() {
   });
 
   // Set a time out to show the default message error
-  if (authError.name === 'defaultError') {
+  if (props.authError.name === 'defaultError') {
     setTimeout(() => {
-      setAuthError({});
+      props.setAuthError({});
     }, 7000);
   }
 
@@ -89,7 +81,7 @@ function SignUpForm() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         validateOnChange={false}
-        onSubmit={singUpHandler}
+        onSubmit={props.singUpHandler}
         // validateOnBlur={false}
       >
         <Form id='signup-form'>
@@ -128,7 +120,7 @@ function SignUpForm() {
           {/* Submit Button */}
           <button type='submit' className='cancel-btn w-100 mx-auto my-3'>
             {/* Show Spinner when Authentication is in progress */}
-            {authSpinner ? (
+            {props.authSpinner ? (
               <div className='spinner-border text-light' role='status'>
                 <span className='sr-only'>Loading...</span>
               </div>
@@ -137,8 +129,10 @@ function SignUpForm() {
             )}
           </button>
           {/* Show Default Authentication error message if auth fail */}
-          {authError.name === 'defaultError' && (
-            <div className='default-error-message'>{authError.message}</div>
+          {props.authError.name === 'defaultError' && (
+            <div className='default-error-message'>
+              {props.authError.message}
+            </div>
           )}
         </Form>
       </Formik>
@@ -161,7 +155,7 @@ function SignUpForm() {
         <button
           type='button'
           className='signup-close'
-          onClick={() => showModalHandler(false)}
+          onClick={() => props.showModalHandler(false)}
         >
           Fermer
         </button>
@@ -170,4 +164,20 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.authError,
+    authSpinner: state.authSpinner,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    singUpHandler: ({ userName, signupEmail, signupPassword }) =>
+      dispatch(actions.singUpHandler(userName, signupEmail, signupPassword)),
+    showModalHandler: (val) => dispatch(actions.showModalHandler(val)),
+    setAuthError: (val) => dispatch(actions.setAuthError(val)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

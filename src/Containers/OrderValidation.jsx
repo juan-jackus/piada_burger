@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { piadaBurgerDatabase } from '../firebase';
-import { PiadaContext } from '../PiadaContext';
 
 import OrderValidationForm from '../Components/Order Validation/OrderValidationForm';
 import ValidationMessage from '../Components/Order Validation/ValidationMessage/ValidationMessage';
@@ -10,9 +10,6 @@ class Validation extends PureComponent {
     phoneNumber: null,
     showMessage: false,
   };
-
-  // Get context
-  static contextType = PiadaContext;
 
   // Get All Odered Item
   createOderSummary = ({ userContacts, deleveryMethod }) => {
@@ -49,7 +46,7 @@ class Validation extends PureComponent {
     // Create OrderSummary
     const oderSummary = this.createOderSummary(formValues);
     // Get the current user uid
-    const uid = this.context.user.uid;
+    const uid = this.props.user.uid;
     // Get the Order table Reference in Database
     const builderDatabase = piadaBurgerDatabase.child('users/' + uid);
 
@@ -64,7 +61,6 @@ class Validation extends PureComponent {
   };
 
   render() {
-    // console.log(this.context.user.uid);
     return (
       <>
         <OrderValidationForm ValidateOder={this.ValidateOder} />
@@ -77,4 +73,10 @@ class Validation extends PureComponent {
   }
 }
 
-export default Validation;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Validation);

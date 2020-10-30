@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
-import { PiadaContext } from '../../PiadaContext';
+import React from 'react';
+import { connect } from 'react-redux';
 import FormValidation from './FormValidation';
 
-const OrderValidationForm = ({ ValidateOder }) => {
-  // Get the userName Value from Piada Context
-  const { user } = useContext(PiadaContext);
-
+const OrderValidationForm = ({ ValidateOder, ...props }) => {
   // Form Initial Values
   const initialValues = {
     userContacts: {
-      userName: user.displayName,
+      userName: props.user.displayName,
       address: '',
       phoneNumber: '',
     },
@@ -43,4 +40,10 @@ const OrderValidationForm = ({ ValidateOder }) => {
   );
 };
 
-export default OrderValidationForm;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(OrderValidationForm);
