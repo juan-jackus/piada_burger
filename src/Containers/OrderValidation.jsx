@@ -1,13 +1,12 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import { piadaBurgerDatabase } from '../firebase';
 
 import OrderValidationForm from '../Components/Order Validation/OrderValidationForm';
 import ValidationMessage from '../Components/Order Validation/ValidationMessage/ValidationMessage';
 
 class Validation extends PureComponent {
+  //
   state = {
-    phoneNumber: null,
     showMessage: false,
   };
 
@@ -20,16 +19,17 @@ class Validation extends PureComponent {
     let yyyy = today.getFullYear();
     let time = today.getHours() + ':' + today.getMinutes();
 
-    today = mm + '/' + dd + '/' + yyyy + ' à ' + time;
+    today = mm + '/' + dd + '/' + yyyy + ' at ' + time;
 
     // Put all Odered Item in one Obeject
     const oderSummary = {
       ingredients: this.props.ingredients,
-      totalPrice: this.props.totalPrice2,
+      totalPrice: this.props.totalPrice2.toFixed(2),
       userContacts: userContacts,
       deleveryMethod: deleveryMethod,
       date: today,
     };
+
     // Add Other Items to Oder Summary if they are selected with
     if (this.props.selectedDrink)
       oderSummary.selectedDrink = this.props.selectedDrink;
@@ -45,18 +45,14 @@ class Validation extends PureComponent {
   ValidateOder = (formValues) => {
     // Create OrderSummary
     const oderSummary = this.createOderSummary(formValues);
-    // Get the current user uid
-    const uid = this.props.user.uid;
     // Get the Order table Reference in Database
-    const builderDatabase = piadaBurgerDatabase.child('users/' + uid);
-
+    const allOrdersDatabase = piadaBurgerDatabase.child('allOrders2');
     // Get a autamatic ID from Database
-    const autoId = builderDatabase.push().key;
+    const autoId = allOrdersDatabase.push().key;
     // Add the Oder to Database
-    builderDatabase.child(autoId).set(oderSummary);
+    allOrdersDatabase.child(autoId).set(oderSummary);
     this.setState({
       showMessage: true,
-      phoneNumber: formValues.userContacts.phoneNumber,
     });
   };
 
@@ -65,18 +61,10 @@ class Validation extends PureComponent {
       <>
         <OrderValidationForm ValidateOder={this.ValidateOder} />
         {/* Show Sucess message Whan the Order is Validate */}
-        {this.state.showMessage && (
-          <ValidationMessage phoneNumber={this.state.phoneNumber} />
-        )}
+        {this.state.showMessage && <ValidationMessage />}
       </>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(Validation);
+export default Validation;

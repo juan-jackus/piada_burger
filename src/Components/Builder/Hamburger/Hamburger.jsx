@@ -6,7 +6,7 @@ import { hamburgerPng } from '../Images/pngImport';
 import { hamburgerWebp } from '../Images/webpImport';
 
 // props destructuring
-const Hamburger = ({ ingredients, basePrice, totalPrice }) => {
+const Hamburger = ({ ingredients, basePrice = 4.0, totalPrice }) => {
   return (
     <div id='hamburger'>
       {/* Top Bread */}

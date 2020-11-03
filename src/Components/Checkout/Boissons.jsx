@@ -9,17 +9,17 @@ class Boissons extends PureComponent {
     super(props);
     // Class variable that will not change
     this.boissons = [
-      { id: 'coca', name: 'Coca Cola', price: 550 },
-      { id: 'cocaCherry', name: 'Coca Cherry', price: 600 },
-      { id: 'cocaZero', name: 'Coca Zero', price: 550 },
-      { id: 'pepsi', name: 'Pepsi', price: 700 },
-      { id: 'fanta', name: 'Fanta', price: 550 },
-      { id: 'sprite', name: 'Sprite', price: 550 },
-      { id: 'jusFraise', name: 'Jus Fraise', price: 550 },
-      { id: 'jusTropical', name: 'Jus Tropical', price: 550 },
-      { id: 'tonic', name: 'Tonic', price: 1600 },
-      { id: 'stellaArtois', name: 'Stella Artois', price: 1750 },
-      { id: 'heineken', name: 'Heineken', price: 1300 },
+      { id: 'coca', name: 'Coca Cola', price: 0.5 },
+      { id: 'cocaCherry', name: 'Coca Cherry', price: 0.6 },
+      { id: 'cocaZero', name: 'Coca Zero', price: 0.5 },
+      { id: 'pepsi', name: 'Pepsi', price: 0.6 },
+      { id: 'fanta', name: 'Fanta', price: 0.5 },
+      { id: 'sprite', name: 'Sprite', price: 0.5 },
+      { id: 'jusFraise', name: 'Strawberry', price: 0.7 },
+      { id: 'jusTropical', name: 'Tropical', price: 0.7 },
+      { id: 'tonic', name: 'Tonic', price: 13 },
+      { id: 'stellaArtois', name: 'Stella Artois', price: 2.5 },
+      { id: 'heineken', name: 'Heineken', price: 2.3 },
       { id: 'rose', name: 'Rose', price: null },
     ];
     // State
@@ -52,10 +52,8 @@ class Boissons extends PureComponent {
 
     return (
       <div id='boissons'>
-        <h1>Boissons</h1>
-        <p className='instruction-text'>
-          Selectionner un brevage à l'aide des Box
-        </p>
+        <h1>Drink</h1>
+        <p className='instruction-text'>Select a drink by using the Box</p>
         <div
           id='drinkCarousel'
           className='carousel slide paused mt-4'
@@ -117,8 +115,8 @@ class Boissons extends PureComponent {
 
                     <span>
                       {boisson.price
-                        ? boisson.price + ' XOF'
-                        : 'Non Disponisble'}
+                        ? '$ ' + boisson.price.toFixed(2)
+                        : 'Not Available'}
                     </span>
                   </div>
                 </div>
@@ -144,7 +142,7 @@ class Boissons extends PureComponent {
             onChange={this.props.remountComponent}
           />
           <label className='custom-control-label mr-2' htmlFor='noDrinkCheck'>
-            Cochez pour ne pas en inclure
+            Check not to include
           </label>
         </div>
       </div>

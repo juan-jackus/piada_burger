@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 
-import commandeText from '../Assets/text/commande-Text.png';
+import commandeText from '../Assets/text/commande-Text-ENG.png';
 import headerArrow from '../Assets/arrows/left-header-arrow-marron.svg';
 
 import OrderValidation from './OrderValidation';
@@ -87,9 +87,7 @@ class Checkout extends Component {
           className='votre-commande-text'
           alt='Votre Commande'
         />
-        <p className='instruction-text mb-0'>
-          Glisser vers le haut pour la poursuivre
-        </p>
+        <p className='instruction-text mb-0'>Slide up to continue</p>
         {/* Builded Burger */}
         <Hamburger
           ingredients={this.props.ingredients}
@@ -101,7 +99,7 @@ class Checkout extends Component {
           className='btn cancel-btn mx-auto my-2'
           onClick={() => this.props.history.goBack()}
         >
-          Modifier le Burger
+          Modify the Burger
         </button>
 
         {/* List of Selected Ingredients */}
@@ -125,7 +123,8 @@ class Checkout extends Component {
         />
         {/* Show the Total Price of the Oder */}
         <p className='checkoutTotalPrice'>
-          Prix Total :<span> {this.state.totalPrice2} </span>XOF (Gratuit)
+          Total Price : $<span> {this.state.totalPrice2.toFixed(2)} </span>(Free
+          for you)
         </p>
         {/* Buttons to Continue Oder and Show Checkout Form*/}
         {this.state.continue === false && (
@@ -133,7 +132,7 @@ class Checkout extends Component {
             className='btnStyle mx-auto'
             onClick={() => this.setState({ continue: true })}
           >
-            Continuer
+            Continue
           </button>
         )}
         {/* Show Validation Form if Continue Button clicked */}

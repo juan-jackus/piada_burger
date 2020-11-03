@@ -1,35 +1,45 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from './../../ReduxStore/actions';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import FormikInput from '../Formik/FormikInput.jsx';
-
-import userLoginWebp from '../../Assets/userLogin.webp';
+import React, { useContext } from 'react';
+import { PiadaContext } from '../../PiadaContext';
 import userLoginPng from '../../Assets/userLogin.png';
+import userLoginWebp from '../../Assets/userLogin.webp';
 import arrow from '../../Assets/arrows/signin-arrow.png';
+import { Formik, Form } from 'formik';
+import FormikInput from '../Formik/FormikInput.jsx';
+import * as Yup from 'yup';
 
-function SignInForm(props) {
+function SignInForm() {
+  // Get the Show Login Form Setter From Piada Context
+  const { logInHandler, showModalHandler } = useContext(PiadaContext);
+
   // Sign In Form Initial Values
-  const initialValues = {
-    signinEmail: '',
-    signinPassword: '',
+  const initialSignInValues = {
+    firstName: '',
+    lastName: '',
   };
+
+  // Sign In Submit Handler
+  const signInSubmitHandler = (values) => {
+    showModalHandler(false);
+    const username = values.firstName + ' ' + values.lastName;
+    logInHandler(username);
+  };
+
+  // RegEx for Yup Validation Schema
+  const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 
   // Yup Validation Schema
   const validationSchema = Yup.object().shape({
-    signinEmail: Yup.string()
-      .email('Addresse Email Invalide')
-      .required('Veuillez renseignez ce champ '),
-    signinPassword: Yup.string().required('Veuillez renseignez ce champ '),
+    firstName: Yup.string()
+      .max(50, 'The limit of (50) Characters has been exceeded')
+      .matches(nameRegex, 'Invalid name')
+      .min(3, 'Name to short')
+      .required('Please fill in this field'),
+    lastName: Yup.string()
+      .max(30, 'The limit of (50) Characters has been exceeded')
+      .matches(nameRegex, 'Invalid name')
+      .min(2, 'Name to short')
+      .required('Please fill in this field'),
   });
-
-  // Set a time out to show the default message error
-  if (props.authError.name === 'defaultError') {
-    setTimeout(() => {
-      props.setAuthError({});
-    }, 7000);
-  }
 
   return (
     <div id='signInForm' className='carousel-item active'>
@@ -44,37 +54,37 @@ function SignInForm(props) {
       </picture>
       <div className='row align-items-center mx-0 mt-3 mb-2'>
         <span className='col-3 p-0 loginline'></span>
-        <h3 className=' text-center text-white col-6'>Bienvenue</h3>
+        <h3 className=' text-center text-white col-6'>Welcome</h3>
         <span className='col-3 p-0 loginline'></span>
       </div>
-      <p className='text-center'>Entrez votre Email et Mot de Passe</p>
+      <p className='text-center'>Enter your first and last name</p>
 
       <Formik
-        initialValues={initialValues}
+        initialValues={initialSignInValues}
         validationSchema={validationSchema}
+        onSubmit={signInSubmitHandler}
         validateOnChange={false}
-        onSubmit={props.logInHandler}
         // validateOnBlur={false}
       >
         {/* {({ dirty, isValid }) => ( */}
         <Form id='signin-form'>
           {/* User First Name Input */}
           <FormikInput
-            name='signinEmail'
+            name='firstName'
             type='text'
             id='inputEmail'
-            className='form-control'
-            placeholder='Email'
+            className='form-control text-capitalize'
             fontAwsome='fa fa-user'
+            placeholder='First Name'
           />
           {/* User last Name Input */}
           <FormikInput
-            name='signinPassword'
-            type='password'
+            name='lastName'
+            type='text'
             id='inputPassword'
-            className='form-control'
-            placeholder='Mot de passe'
-            fontAwsome='fa fa-lock'
+            className='form-control text-uppercase'
+            fontAwsome='fa fa-user'
+            placeholder='Last Name'
           />
 
           <button
@@ -82,21 +92,8 @@ function SignInForm(props) {
             className='cancel-btn w-100 mx-auto mt-3'
             // disabled={!(dirty && isValid)}
           >
-            {/* Show Spinner when Authentication is in progress */}
-            {props.authSpinner ? (
-              <div className='spinner-border text-light' role='status'>
-                <span className='sr-only'>Loading...</span>
-              </div>
-            ) : (
-              'SE CONNECTER'
-            )}
+            SIGN IN
           </button>
-          {/* Show Default Authentication error message if auth fail */}
-          {props.authError.name === 'defaultError' && (
-            <div className='default-error-message'>
-              {props.authError.message}
-            </div>
-          )}
         </Form>
         {/* )} */}
       </Formik>
@@ -106,9 +103,9 @@ function SignInForm(props) {
         <button
           type='button'
           className='signin-close'
-          onClick={() => props.showModalHandler(false)}
+          onClick={() => showModalHandler(false)}
         >
-          Fermer
+          Close
         </button>
         {/* Create Account Link */}
         <a
@@ -117,7 +114,7 @@ function SignInForm(props) {
           role='button'
           data-slide='next'
         >
-          Creer un compte
+          Create Account
           <img src={arrow} className='ml-2' alt='arrow' />
         </a>
       </div>
@@ -125,20 +122,4 @@ function SignInForm(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    authError: state.authError,
-    authSpinner: state.authSpinner,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logInHandler: ({ signinEmail, signinPassword }) =>
-      dispatch(actions.logInHandler(signinEmail, signinPassword)),
-    showModalHandler: (val) => dispatch(actions.showModalHandler(val)),
-    setAuthError: (val) => dispatch(actions.setAuthError(val)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+export default SignInForm;

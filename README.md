@@ -1,15 +1,31 @@
-# PIADA BURGER v1.0.0
+# PIADA BURGER APP
 
 ## App Description
 
 Piada Burger is an interactive Burger Builder App when you can create and make an order in a fun and interactive way.
+
+![Alt text](./src/Assets/piada-burger.png?raw=true 'Piada Burger App')
 
 ## Live Demo
 
 Live version is available here:
 https://piada-burger-c9703.web.app
 
-### Dependencies!!
+## Versions of the App (GIT)
+
+- Piada Burger v1.3.0_fr  
+   "Version with Redux instead of Context API"
+
+- Pida Burger v1.2.0_fr  
+   "Added Firebase Authentification with (singInWithEmailAndPassword) "
+
+- Pida Burger v1.0.0_English
+  "English version 1.0.0 of the App"
+
+- Pida Burger v1.0.0_fr
+  "French Version of Piada Burger"
+
+## Dependencies!!
 
 - React 16.13.1
 - React Router

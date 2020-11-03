@@ -1,20 +1,10 @@
-import React, { useRef, useEffect } from 'react';
-import { connect } from 'react-redux';
-import * as actions from './../../ReduxStore/actions';
+import React, { useRef } from 'react';
 import { Field, ErrorMessage } from 'formik';
 import InputErrorMessage from './InputErrorMessage.jsx';
 
-function FormikInput({ fontAwsome, authError, setAuthError, ...props }) {
+function FormikInput({ fontAwsome, ...props }) {
   // Get a reference to The password input element
   const passwordInput = useRef(null);
-  // Time out to show auth error message
-  useEffect(() => {
-    if (authError.name === props.name) {
-      setTimeout(() => {
-        setAuthError({});
-      }, 3000);
-    }
-  });
 
   // Function hide the password
   const hidePassword = (e) => {
@@ -36,7 +26,6 @@ function FormikInput({ fontAwsome, authError, setAuthError, ...props }) {
             <i className={fontAwsome}></i>
           </div>
         </div>
-        {/* Custom Field for password input */}
         {props.type === 'password' ? (
           <Field name={props.name}>
             {({ field }) => (
@@ -57,26 +46,10 @@ function FormikInput({ fontAwsome, authError, setAuthError, ...props }) {
           <Field {...props} />
         )}
       </div>
-      {/* Show input error message on Blur */}
+
       <ErrorMessage name={props.name} component={InputErrorMessage} />
-      {/* Show Authentication error message if auth fail on Submit */}
-      {authError.name === props.name && (
-        <InputErrorMessage>{authError.message}</InputErrorMessage>
-      )}
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    authError: state.authError,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setAuthError: (val) => dispatch(actions.setAuthError(val)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FormikInput);
+export default FormikInput;
