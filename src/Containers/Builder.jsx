@@ -12,17 +12,17 @@ class Builder extends Component {
   // Default State
   state = {
     ingredients: [
-      { id: 'laitue', price: 200, count: 0 },
-      { id: 'tomate', price: 150, count: 0 },
-      { id: 'ognion', price: 100, count: 0 },
-      { id: 'jambon', price: 700, count: 0 },
-      { id: 'fromage', price: 550, count: 0 },
-      { id: 'omelette', price: 400, count: 0 },
-      { id: 'steak', price: 950, count: 0 },
-      { id: 'poulet', price: 800, count: 0 },
+      { id: 'salad', price: 0.7, count: 0 },
+      { id: 'tomato', price: 0.5, count: 0 },
+      { id: 'ognion', price: 0.3, count: 0 },
+      { id: 'ham', price: 1.5, count: 0 },
+      { id: 'cheese', price: 1.2, count: 0 },
+      { id: 'egg', price: 0.9, count: 0 },
+      { id: 'steak', price: 1.9, count: 0 },
+      { id: 'chicken', price: 1.7, count: 0 },
     ],
-    basePrice: 350,
-    totalPrice: 350,
+    basePrice: 4.0,
+    totalPrice: 4.0,
   };
 
   // Get State from Database
@@ -43,7 +43,7 @@ class Builder extends Component {
         // Increment ingredient if cliked button is 'More'
         if (ingredient.id === id && button === 'more') {
           // Get rid of all previous selected Steak if Chicken is incremement
-          if (id === 'poulet') {
+          if (id === 'chicken') {
             for (const findSteak of copieState.ingredients) {
               // Find Steak and substract his price of Total price and set his count to zero
               if (findSteak.id === 'steak') {
@@ -56,7 +56,7 @@ class Builder extends Component {
           // Get rid of all previous selected Chicken if Steak is incremement
           else if (id === 'steak') {
             for (const findChicken of copieState.ingredients) {
-              if (findChicken.id === 'poulet') {
+              if (findChicken.id === 'chicken') {
                 // Find Chicken and substract his price of Total price and set his count to zero
                 copieState.totalPrice -= findChicken.price * findChicken.count;
                 findChicken.count = 0;

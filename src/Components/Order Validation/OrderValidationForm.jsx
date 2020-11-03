@@ -1,16 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
+import { PiadaContext } from '../../PiadaContext';
 import FormValidation from './FormValidation';
 
-const OrderValidationForm = ({ ValidateOder, ...props }) => {
+const OrderValidationForm = ({ ValidateOder }) => {
+  // Get the username Value from Piada Context
+  const { username } = useContext(PiadaContext);
+
   // Form Initial Values
   const initialValues = {
     userContacts: {
-      userName: props.user.displayName,
+      userName: username,
       address: '',
       phoneNumber: '',
     },
-    deleveryMethod: '',
+    deleveryMethod: 'normal',
   };
 
   // Handle all User Input
@@ -21,9 +24,9 @@ const OrderValidationForm = ({ ValidateOder, ...props }) => {
     const length = phoneNumber.length;
     // Format Phone Number
     for (let i = 0; i < length; i++) {
-      if (i === 2 || i === 5 || i === 7) {
+      if (i === 3 || i === 6) {
         formattedPhoneNumber += ' ' + phoneNumber.charAt(i);
-      } else if (i < 9) {
+      } else if (i < 10) {
         formattedPhoneNumber += phoneNumber.charAt(i);
       }
     }
@@ -40,10 +43,4 @@ const OrderValidationForm = ({ ValidateOder, ...props }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(OrderValidationForm);
+export default OrderValidationForm;

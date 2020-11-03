@@ -63,55 +63,6 @@
     justify-content: space-around;
   }
 
-  .confirm-deletion-popup {
-    position: fixed;
-    overflow: auto;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 3000;
-    padding-top: 3rem;
-
-    .confirm-deletion-content {
-      background-color: #fbe9e9;
-      color: #b64545;
-      width: 75%;
-      max-width: 300px;
-      margin: 0 auto;
-      padding: 1rem;
-      border: 1px solid #ecd3d3;
-      border-radius: 10px;
-      p {
-        text-align: center;
-      }
-      div {
-        display: flex;
-        justify-content: center;
-
-        .confirm-deletion {
-          background-color: #c82333;
-          color: rgb(223, 223, 223);
-          margin-right: 0.5rem;
-          &:hover {
-            color: white;
-            background-color: #a0212d;
-          }
-        }
-        .cancel-deletion {
-          background-color: #7e3d1e;
-          color: rgb(223, 223, 223);
-          margin-left: 0.5rem;
-          &:hover {
-            color: white;
-            background-color: #5f2e18;
-          }
-        }
-      }
-    }
-  }
-
   @media only screen and (max-width: 599px) {
     .frie-box,
     .drink-box {

@@ -1,5 +1,5 @@
 import React from 'react';
-// import alaImage from '../../../Assets/msg/ala.png';
+// import alaImage from '../../../Assets/msg/alla.png';
 // import amieImage from '../../../Assets/msg/amie-kebou.png';
 // import gorillaVideo from '../../../Assets/msg/gorilla.mp4';
 

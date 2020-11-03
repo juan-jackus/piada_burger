@@ -1,8 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../../ReduxStore/actions';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import Control from './Control';
+import { PiadaContext } from '../../../PiadaContext';
 // Props Destructuring
 const BuildControls = ({
   ingredients,
@@ -12,16 +11,18 @@ const BuildControls = ({
   pathNavigation,
   ...props
 }) => {
+  // Get the Login Value and showModalHandler From Piada Context
+  const { login, showModalHandler } = useContext(PiadaContext);
   // Array of all existing Ingredient for rendering in Build Controls
   const all_ingredients = [
-    'laitue',
-    'tomate',
+    'salad',
+    'tomato',
     'ognion',
-    'jambon',
-    'omelette',
-    'fromage',
+    'ham',
+    'egg',
+    'cheese',
     'steak',
-    'poulet',
+    'chicken',
   ];
 
   const priceStyle = {
@@ -34,17 +35,18 @@ const BuildControls = ({
     <div id='buildControls'>
       <div className='buildControls-text'>
         <p className='mb-0 text-center px-1' style={{ color: '#242424' }}>
-          Prix Actuel :
+          Current Price :
           <span className='font-weight-bold'>
             {' '}
-            <span style={priceStyle}>{totalPrice}</span> XOF (Gratuit pour Vous)
+            $<span style={priceStyle}>{totalPrice.toFixed(2)}</span> (Free for
+            you)
           </span>
         </p>
         <span
           className='text-center mb-3 px-1'
           style={{ color: '#432104', fontSize: '0.8rem' }}
         >
-          Ajouter ou retirer des ingredients à l'aide des Boutons
+          Add or Remove Ingredients with the buttons below
         </span>
       </div>
       <div className='controls'>
@@ -66,31 +68,16 @@ const BuildControls = ({
         className='btnStyle '
         disabled={totalPrice <= basePrice}
         onClick={
-          props.user
+          login
             ? () => props.history.push('/checkout')
-            : () => props.showModalHandler(true)
+            : () => showModalHandler(true)
         }
       >
         {/* show different text if user is login or not */}
-        {props.user ? 'COMMANDEZ' : 'ENTREZ VOTRE NOM POUR COMMANDER'}
+        {login ? 'ORDER NOW' : 'ENTER YOUR NAME TO ORDER'}
       </button>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showModalHandler: (val) => dispatch(actions.showModalHandler(val)),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(BuildControls));
+export default withRouter(BuildControls);

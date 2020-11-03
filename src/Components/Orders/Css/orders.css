@@ -193,64 +193,6 @@
       justify-content: space-around;
 }
 
-#orders-wrapper #order-summary .confirm-deletion-popup {
-  position: fixed;
-  overflow: auto;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 3000;
-  padding-top: 3rem;
-}
-
-#orders-wrapper #order-summary .confirm-deletion-popup .confirm-deletion-content {
-  background-color: #fbe9e9;
-  color: #b64545;
-  width: 75%;
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 1rem;
-  border: 1px solid #ecd3d3;
-  border-radius: 10px;
-}
-
-#orders-wrapper #order-summary .confirm-deletion-popup .confirm-deletion-content p {
-  text-align: center;
-}
-
-#orders-wrapper #order-summary .confirm-deletion-popup .confirm-deletion-content div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#orders-wrapper #order-summary .confirm-deletion-popup .confirm-deletion-content div .confirm-deletion {
-  background-color: #c82333;
-  color: #dfdfdf;
-  margin-right: 0.5rem;
-}
-
-#orders-wrapper #order-summary .confirm-deletion-popup .confirm-deletion-content div .confirm-deletion:hover {
-  color: white;
-  background-color: #a0212d;
-}
-
-#orders-wrapper #order-summary .confirm-deletion-popup .confirm-deletion-content div .cancel-deletion {
-  background-color: #7e3d1e;
-  color: #dfdfdf;
-  margin-left: 0.5rem;
-}
-
-#orders-wrapper #order-summary .confirm-deletion-popup .confirm-deletion-content div .cancel-deletion:hover {
-  color: white;
-  background-color: #5f2e18;
-}
-
 @media only screen and (max-width: 599px) {
   #orders-wrapper #order-summary .frie-box .spiner,
   #orders-wrapper #order-summary .drink-box .spiner {

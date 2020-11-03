@@ -10,10 +10,10 @@ const Ingredient = ({ ingredients }) => {
   };
 
   // Get Cheese, egg, steak, and chicken to position them in the burger
-  const cheese = ingredients.find((ingredient) => ingredient.id === 'fromage');
-  const egg = ingredients.find((ingredient) => ingredient.id === 'omelette');
+  const cheese = ingredients.find((ingredient) => ingredient.id === 'cheese');
+  const egg = ingredients.find((ingredient) => ingredient.id === 'egg');
   const steak = ingredients.find((ingredient) => ingredient.id === 'steak');
-  const chicken = ingredients.find((ingredient) => ingredient.id === 'poulet');
+  const chicken = ingredients.find((ingredient) => ingredient.id === 'chicken');
   // variable to place differently ingredient
   let placement = false;
   // Check the number of Cheese, egg, steak or chicken to place the Cheese
@@ -39,7 +39,7 @@ const Ingredient = ({ ingredients }) => {
       let jsxCode = [];
       for (let i = 0; ingredient.count > i; i++) {
         switch (ingredient.id) {
-          case 'laitue':
+          case 'salad':
             jsxCode.push(
               <img
                 key={i}
@@ -49,7 +49,7 @@ const Ingredient = ({ ingredients }) => {
               />
             );
             break;
-          case 'tomate':
+          case 'tomato':
             jsxCode.push(
               <img
                 key={i}
@@ -69,17 +69,12 @@ const Ingredient = ({ ingredients }) => {
               />
             );
             break;
-          case 'jambon':
+          case 'ham':
             jsxCode.push(
-              <img
-                key={i}
-                className='bacon'
-                src={ingredientsPng.jambon}
-                alt=''
-              />
+              <img key={i} className='bacon' src={ingredientsPng.ham} alt='' />
             );
             break;
-          case 'fromage':
+          case 'cheese':
             // place normaly Cheese when there is 1 Cheese and {1 or 2} egg, steak or chicken
             // Or if there is 2 Cheese and 1 egg, steak or chicken
             if (placement === false || placement === 'egg') {
@@ -94,7 +89,7 @@ const Ingredient = ({ ingredients }) => {
               );
             }
             break;
-          case 'omelette':
+          case 'egg':
             // specialement Placement if there is 2 Cheese and 2 egg
             if (placement === 'double') {
               jsxCode.push(
@@ -129,7 +124,7 @@ const Ingredient = ({ ingredients }) => {
             break;
 
           case 'steak':
-          case 'poulet':
+          case 'chicken':
             // check if there is placement to make
             if (placement !== false && placement !== 'double') {
               // specialement placement if there is 2 Cheese, 2 egg and 2 steak or chicken

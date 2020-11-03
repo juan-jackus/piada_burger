@@ -13,11 +13,9 @@ import Hamburger from '../Builder/Hamburger/Hamburger';
 import SelectedIngredients from '../Checkout/SelectedIngredients';
 import { EllipsisLoader } from '../Loader/Spiner';
 
-const OderSummary = ({ orderSummary, deleteOrderHandler, ...props }) => {
+const OderSummary = ({ orderSummary, ...props }) => {
   const [spiner, setspiner] = useState(true);
-  const [confirmDeletion, setConfirmDeletion] = useState(false);
 
-  // Show some loader and Scroll on top when component mount
   useEffect(() => {
     window.scroll({
       top: 0,
@@ -27,26 +25,6 @@ const OderSummary = ({ orderSummary, deleteOrderHandler, ...props }) => {
       setspiner(false);
     }, 300);
   }, []);
-
-  function deletionPopupHandler(e) {
-    // Show confirm deletion Modal
-    setConfirmDeletion(true);
-    // Disable Backgroung Scrool when Message pop up
-    document.body.style.overflow = 'hidden';
-    // Check the DOM element onClick Occur
-    if (
-      e.target.classList.contains('confirm-deletion-popup') ||
-      e.target.classList.contains('cancel-deletion')
-    ) {
-      document.body.style.overflow = 'auto';
-      setConfirmDeletion(false);
-    } else if (e.target.classList.contains('confirm-deletion')) {
-      document.body.style.overflow = 'auto';
-      deleteOrderHandler(orderSummary.id);
-      props.retrieveOrders();
-      props.history.goBack();
-    }
-  }
 
   return (
     <div id='order-summary'>
@@ -80,7 +58,7 @@ const OderSummary = ({ orderSummary, deleteOrderHandler, ...props }) => {
       <div className='d-flex justify-content-around mt-2'>
         {orderSummary.selectedDrink && (
           <div className='drink-box'>
-            <h1 className='mb-3'>Boisson</h1>
+            <h1 className='mb-3'>Drink</h1>
             <picture>
               <source
                 srcSet={boissonWebp[orderSummary.selectedDrink]}
@@ -103,7 +81,7 @@ const OderSummary = ({ orderSummary, deleteOrderHandler, ...props }) => {
         {/* Selected Frie Box */}
         {orderSummary.selectedFrie && (
           <div className=' frie-box'>
-            <h1 className='mb-3'>Frite</h1>
+            <h1 className='mb-3'>Frie</h1>
             <picture>
               <source
                 srcSet={friesWebp[orderSummary.selectedFrie]}
@@ -158,31 +136,17 @@ const OderSummary = ({ orderSummary, deleteOrderHandler, ...props }) => {
       {/* Go Back and Delete Order Buttons */}
       <div className='order-summary-btn'>
         <button className='cancel-btn' onClick={() => props.history.goBack()}>
-          Retour
+          Go back
         </button>
 
         <button
           className='cancel-btn delete-btn'
-          onClick={(e) => deletionPopupHandler(e)}
+          disabled
+          // onClick={() => this.props.history.goBack()}
         >
-          Supprimer la Commande
+          Delete order
         </button>
       </div>
-      {/* Modal to Confirm or Cancel Deletion */}
-      {confirmDeletion && (
-        <div
-          className='confirm-deletion-popup'
-          onClick={(e) => deletionPopupHandler(e)}
-        >
-          <div className='confirm-deletion-content'>
-            <p>Confirmer la supreesion de la commande ?</p>
-            <div>
-              <button className='btn confirm-deletion '>Oui</button>
-              <button className='btn cancel-deletion'>Annuler</button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

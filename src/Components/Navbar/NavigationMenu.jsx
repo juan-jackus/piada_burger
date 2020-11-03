@@ -1,7 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from './../../ReduxStore/actions';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { PiadaContext } from '../../PiadaContext';
 
 function NavigationMenu({
   target,
@@ -9,8 +8,9 @@ function NavigationMenu({
   toggleClass,
   onPaths,
   builderText,
-  ...props
 }) {
+  // Get the Login Value, showModalHandler and LogOutHandler From Piada Context
+  const { logOutHandler, login, showModalHandler } = useContext(PiadaContext);
   // Assign the JSX for the Oder and Logout Menu to a variable
   const oderLogoutMenu = [
     // Oder Menu
@@ -26,7 +26,7 @@ function NavigationMenu({
         className='nav-link text-white p-3 '
         onClick={() => toggleClass(target)}
       >
-        Commandes
+        Orders
       </NavLink>
     </li>,
     // Logout Menu
@@ -41,10 +41,10 @@ function NavigationMenu({
         className='nav-link text-white p-3'
         onClick={() => {
           toggleClass(target);
-          props.logOutHandler();
+          logOutHandler();
         }}
       >
-        Deconnexion
+        Sign Out
       </a>
     </li>,
   ];
@@ -53,7 +53,7 @@ function NavigationMenu({
     // Login Menu
     <li
       className='nav-item '
-      key='user'
+      key='login'
       data-toggle='collapse'
       data-target={collapseNavbar}
     >
@@ -61,10 +61,10 @@ function NavigationMenu({
         className='nav-link text-white p-3'
         onClick={() => {
           toggleClass(target);
-          props.showModalHandler(true);
+          showModalHandler(true);
         }}
       >
-        Se Connecter
+        Sign In
       </span>
     </li>,
   ];
@@ -90,23 +90,10 @@ function NavigationMenu({
           </div>
         </li>
         {/* Show Oders Menu and Logout button when Login  */}
-        {props.user ? oderLogoutMenu : loginMenu}
+        {login ? oderLogoutMenu : loginMenu}
       </ul>
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showModalHandler: (val) => dispatch(actions.showModalHandler(val)),
-    logOutHandler: () => dispatch(actions.logOutHandler()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationMenu);
+export default NavigationMenu;

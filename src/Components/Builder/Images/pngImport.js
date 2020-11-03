@@ -1,7 +1,7 @@
 // Hamburger
 import topBread from '../../../Assets/png/top-bread.png';
-import desktopText from '../../../Assets/text/default-text.png';
-import mobileText from '../../../Assets/text/mobile-default-text.png';
+import desktopText from '../../../Assets/text/default-text-ENG.png';
+import mobileText from '../../../Assets/text/mobile-default-text-ENG.png';
 import bottomBread from '../../../Assets/png/bottom-bread.png';
 import bottomBread2 from '../../../Assets/png/bottom-bread2.png';
 
@@ -9,7 +9,7 @@ import bottomBread2 from '../../../Assets/png/bottom-bread2.png';
 import salad from '../../../Assets/ingredients/i_salad.png';
 import tomato from '../../../Assets/ingredients/i_tomato.png';
 import ognion from '../../../Assets/ingredients/i_ognion.png';
-import jambon from '../../../Assets/ingredients/i_jambon.png';
+import ham from '../../../Assets/ingredients/i_jambon.png';
 import cheese from '../../../Assets/ingredients/i_cheese.png';
 import egg from '../../../Assets/ingredients/i_egg.png';
 import egg2 from '../../../Assets/ingredients/i_egg2.png';
@@ -31,7 +31,7 @@ export const ingredientsPng = {
   salad,
   tomato,
   ognion,
-  jambon,
+  ham,
   cheese,
   egg,
   egg2,

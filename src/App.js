@@ -1,50 +1,36 @@
-import React, { useEffect } from 'react';
-import { auth } from './firebase';
+import React, { useEffect, useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from './ReduxStore/actions';
+import { PiadaContext } from './PiadaContext';
 
 import Navbar from './Components/Navbar/Navbar';
 import Builder from './Containers/Builder';
 import Auth from './Containers/Auth';
 import Orders from './Containers/Orders';
 
-const App = (props) => {
+const App = () => {
+  // Get Login, LogInHandler and ShowLoginForm From Piada Context
+  const { login, logInHandler, showLoginForm } = useContext(PiadaContext);
+
   useEffect(() => {
-    // Listen to Auth change to set user
-    auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        props.authStateChanged(authUser);
-      }
-    });
-  });
+    const username = localStorage.getItem('username');
+    // Persistent Login if user already Log In
+    if (username) {
+      logInHandler(username);
+    }
+  }, [logInHandler]);
 
   return (
     <div id='main-div'>
       <Navbar />
       <Switch>
-        {props.user && <Route path='/orders' component={Orders} />}
+        {login && <Route path='/orders' component={Orders} />}
         <Route path='/' render={() => <Builder />} />
       </Switch>
-      {props.showLoginForm && <Auth />}
+      {showLoginForm && <Auth />}
 
       <Redirect to='/' />
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    showLoginForm: state.showLoginForm,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    authStateChanged: (authUser) =>
-      dispatch(actions.authStateChanged(authUser)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

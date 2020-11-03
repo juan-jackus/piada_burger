@@ -11,25 +11,25 @@ const FormValidation = ({
 }) => {
   // Regex for Yup Validation Schema
   const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-  const phoneNumberRegex = /^(77|70|33|76|78) [0-9]{3} [0-9]{2} [0-9]{2}/;
+  // const phoneNumberRegex = /^(77|70|33|76|78) [0-9]{3} [0-9]{2} [0-9]{2}/;
 
   // Yup Validation Schema
   const validationSchema = Yup.object().shape({
     userContacts: Yup.object().shape({
       userName: Yup.string()
-        .max(50, 'La limite de caractéres (50) a été dépassèe')
-        .matches(nameRegex, 'Nom invalide')
-        .min(3, 'Nom trop court')
-        .required('Veuillez renseignez ce champ '),
+        .max(50, 'The limit of (50) Characters has been exceeded')
+        .matches(nameRegex, 'Invalid name')
+        .min(5, 'Name too short')
+        .required('Please fill in this field'),
       address: Yup.string()
         .max(50, 'La limite de caractéres (50) a été dépassèe')
         .min(5, 'Adresse trop court')
-        .required('Veuillez renseignez ce champ '),
+        .required('Please fill in this field'),
       phoneNumber: Yup.string()
-        .matches(phoneNumberRegex, 'Numéro de Telephone invalide')
-        .required('Veuillez renseignez ce champ '),
+        // .matches(phoneNumberRegex, 'Invalid Phone Number')
+        .required('Please fill in this field'),
     }),
-    deleveryMethod: Yup.string().required('Veuillez renseignez ce champ '),
+    deleveryMethod: Yup.string().required('Please fill in this field'),
   });
 
   return (
@@ -41,25 +41,25 @@ const FormValidation = ({
       // validateOnBlur={false}
     >
       <Form id='validation-form' className='mb-5 mt-3 card p-3'>
-        <h3 className=' text-center text-white mt-3'>Entrez Vos Contacts</h3>
+        <h3 className=' text-center text-white mt-3'>Fill out this Form</h3>
         <hr />
         <div className='px-3'>
           {/* User Name Input */}
           <FormikInput
-            fontAwsome='fa fa-user'
-            className='form-control text-capitalize'
-            type='text'
             name='userContacts.userName'
-            placeholder='Votre Nom'
+            type='text'
+            className='form-control text-capitalize'
+            fontAwsome='fa fa-user'
+            placeholder='Name'
           />
           {/* User Address Input */}
           <FormikInput
-            fontAwsome='fa fa-home'
-            className='form-control text-capitalize'
-            type='text'
-            autoFocus
             name='userContacts.address'
-            placeholder='Addresse'
+            type='text'
+            className='form-control text-capitalize'
+            fontAwsome='fa fa-home'
+            placeholder='Address'
+            autoFocus
           />
           {/* Use Field for Custom Handle Change to format Phone Number */}
           <Field name='userContacts.phoneNumber'>
@@ -73,9 +73,9 @@ const FormValidation = ({
                       </div>
                     </div>
                     <input
-                      className='form-control'
                       type='tel'
-                      placeholder='Numero de telephone'
+                      className='form-control'
+                      placeholder='Phone number'
                       {...field}
                       onChange={(e) => {
                         form.setFieldValue(
@@ -96,19 +96,19 @@ const FormValidation = ({
           </Field>
           {/* Select Delevery Method */}
           <div className='form-group d-flex flex-column'>
-            <p className='mt-3 mb-2'>Temps de Livraison</p>
+            <p className='mt-3 mb-2'>Delivery deadline</p>
             <Field as='select' className='custom-select' name='deleveryMethod'>
               <option value='' disabled>
-                Selectionnez le delais de la livraison...
+                Select the delivery deadline...
               </option>
-              <option value='express'>Sous 1 Heures</option>
-              <option value='fast'>Sous 3 Heures</option>
-              <option value='normal'>Sous 7 Heures</option>
+              <option value='express'>Less than 1 hour</option>
+              <option value='fast'>Less than 3 hours</option>
+              <option value='normal'>Less than 7 hours</option>
             </Field>
             <ErrorMessage name='deleveryMethod' component={InputErrorMessage} />
             {/* Validate Order Button */}
             <button className=' mx-auto mt-4 btnStyle w-100 ' type='submit'>
-              VALIDER LA COMMANDE
+              VALIDATE YOUR ORDER
             </button>
           </div>
         </div>

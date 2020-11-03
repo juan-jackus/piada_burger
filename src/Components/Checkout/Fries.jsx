@@ -7,8 +7,8 @@ const Fries = React.memo(({ selectedFrie, selectedFrieHandler }) => {
 
   return (
     <div id='fries'>
-      <h1>Frites</h1>
-      <p className='instruction-text'>Selectionner une barquette de Frites</p>
+      <h1>Fries</h1>
+      <p className='instruction-text'>Select a tray of Fries</p>
       <div className='d-flex frite-box'>
         {/* Render the Array of all Fries  */}
         {fries.map((frie) => (

@@ -16,7 +16,7 @@ const Navbar = (props) => {
   // Allow Nav Link to Collapse Navebar on Mobile
   let collapseNavbar = mobile ? '#navbarCollapse' : '';
   // Switch between "Realiser mon Burger" text or "Validation "text
-  let builderText = 'Realiser mon Burger';
+  let builderText = 'Burger Builder';
 
   // Toggle class to change icon and animate hamburger dropdown menu button
   function toggleClass(target) {
@@ -42,12 +42,12 @@ const Navbar = (props) => {
       stickyNavbar = 'navbar navbar-dark navbar-expand-sm p-0';
       break;
     case '/orders':
-      mobilePathName = 'Commandes'; // Change the Header Name to Commandes On Mobile Only
+      mobilePathName = 'Orders'; // Change the Header Name to Commandes On Mobile Only
       logo = headerArrow; // Change the Logo Image to Arrow Image to Go Back
       break;
     case '/checkout':
-      mobilePathName = 'Validation'; // Change the Header Name to Commandes On Mobile Only
-      builderText = 'Validation'; // Change The Menu Text on Checkout Path
+      mobilePathName = 'Checkout'; // Change the Header Name to Commandes On Mobile Only
+      builderText = 'Checkout'; // Change The Menu Text on Checkout Path
       logo = headerArrow; // Change the Logo Image to Arrow Image to Go Back
       break;
     // When PathName is Order Summary
@@ -55,7 +55,7 @@ const Navbar = (props) => {
       // Split the Pathname to get the number of the Order
       const pathNameArray = props.history.location.pathname.split('_');
       // Get the Number of the Order by accessing the last Array item
-      mobilePathName = 'Commande n°' + pathNameArray[pathNameArray.length - 1];
+      mobilePathName = 'Order n°' + pathNameArray[pathNameArray.length - 1];
       logo = headerCross; // Change the Logo Image to Cross Image
       break;
   }

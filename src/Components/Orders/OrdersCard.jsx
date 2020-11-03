@@ -7,8 +7,8 @@ function OrdersCard(props) {
       <p className='resize-text'>
         {/* Change the text if there is no order */}
         {props.orders[0] !== null
-          ? 'Cliquez sur une Commande pour plus de details'
-          : 'Aucune commande effectuée, Veuillez en passer une'}
+          ? 'Click on an Order for more details'
+          : 'No order placed, please place an order'}
       </p>
       {/* Check if there is a order before rendering */}
       {props.orders[0] !== null && (

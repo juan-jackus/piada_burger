@@ -1,9 +1,9 @@
 import React from 'react';
-import laituePng from '../../../Assets/build-control-img/small-salad.png';
-import tomatePng from '../../../Assets/build-control-img/small-tomate.png';
+import saladPng from '../../../Assets/build-control-img/small-salad.png';
+import tomatoPng from '../../../Assets/build-control-img/small-tomate.png';
 import ognionPng from '../../../Assets/build-control-img/small-ognion.png';
-import jambonPng from '../../../Assets/build-control-img/small-jambon.png';
-import fromagePng from '../../../Assets/build-control-img/small-cheese.png';
+import hamPng from '../../../Assets/build-control-img/small-jambon.png';
+import cheesePng from '../../../Assets/build-control-img/small-cheese.png';
 import eggPng from '../../../Assets/build-control-img/small-egg.png';
 import steakPng from '../../../Assets/build-control-img/small-steak.png';
 import chickenPng from '../../../Assets/build-control-img/small-chicken.png';
@@ -15,29 +15,29 @@ const Control = ({ moreAndLessHandler, ingredients, name }) => {
   });
   // Array of small image representation of ingredient in Build Control
   const ingredientsPng = {
-    laitue: laituePng,
-    tomate: tomatePng,
+    salad: saladPng,
+    tomato: tomatoPng,
     ognion: ognionPng,
-    jambon: jambonPng,
-    fromage: fromagePng,
-    omelette: eggPng,
+    ham: hamPng,
+    cheese: cheesePng,
+    egg: eggPng,
     steak: steakPng,
-    poulet: chickenPng,
+    chicken: chickenPng,
   };
   //  Check to enable or disable Less and More Buttons
   const disableLess = foundedIngredient.count === 0;
   let disableMore = false;
   switch (foundedIngredient.id) {
-    case 'laitue':
-    case 'tomate':
+    case 'salad':
+    case 'tomato':
     case 'ognion':
-    case 'jambon':
+    case 'ham':
       disableMore = foundedIngredient.count === 1;
       break;
-    case 'fromage':
-    case 'omelette':
+    case 'cheese':
+    case 'egg':
     case 'steak':
-    case 'poulet':
+    case 'chicken':
       disableMore = foundedIngredient.count === 2;
       break;
     default:

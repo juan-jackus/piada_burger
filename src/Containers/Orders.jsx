@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { piadaBurgerDatabase } from '../firebase';
 import { Route } from 'react-router-dom';
 import { RollerLoader } from '../Components/Loader/Spiner';
@@ -10,7 +9,6 @@ import OrderSummary from '../Components/Orders/OrderSummary';
 
 class Orders extends Component {
   state = {
-    initialState: null,
     orders: null,
     orderSummary: null,
     retrieveAgainData: false,
@@ -25,25 +23,13 @@ class Orders extends Component {
     if (this.state.retrieveAgainData) {
       this.setState({ retrieveAgainData: false });
     }
-    // Get the current user uid
-    const uid = this.props.user.uid;
 
-    // Get Users and BulderState Ref Database
-    const usersDatabase = piadaBurgerDatabase.child('users/' + uid);
-    const builderStateDatabase = piadaBurgerDatabase.child('builderState');
+    // Get a Reference to AllOrders
+    const allOrders = piadaBurgerDatabase.child('allOrders2');
 
-    // Get User Orders from database and set the state
-    usersDatabase.once('value', (snapshot) => {
+    allOrders.once('value', (snapshot) => {
       this.setState({
         orders: [snapshot.val()],
-        retrieveAgainData: false,
-      });
-    });
-
-    // Get Builder State Once and set the initialState
-    builderStateDatabase.once('value', (snapshot) => {
-      this.setState({
-        initialState: snapshot.val(),
       });
     });
 
@@ -58,20 +44,10 @@ class Orders extends Component {
   // Go to the Summary of clicked Order
   orderSummaryHandler = (id, number, orderSummary) => {
     // Copie initial state and update modify one with the order summary
-    const copieState = { ...this.state.initialState, ...orderSummary, id };
+    const copieState = { ...orderSummary, id };
     this.setState({ orderSummary: copieState }, () => {
       this.props.history.push('/orders/' + id + '_' + number);
     });
-  };
-
-  // Method to delete a order
-  deleteOrderHandler = (id) => {
-    // Get the current user uid
-    const uid = this.props.user.uid;
-    // Get User Order Ref
-    const userOrderRef = piadaBurgerDatabase.child('users/' + uid);
-    // Remove the Order by his ID
-    userOrderRef.child(id).remove();
   };
 
   render() {
@@ -81,11 +57,11 @@ class Orders extends Component {
         {this.state.retrieveAgainData ? (
           <div className='pt-5 retrieveDataMessage'>
             <p>
-              Un probléme est survenu lors de la recupération des commande
+              A problem occurred while retrieving the orders
               <br />
-              Veuillez vérifier votre connexion et réessayer
+              Please check your connection and try again
               <br />
-              en appuyant sur le boutton ci dessous
+              by pressing the button below
             </p>
             <img src={arrowRefresh} alt='' onClick={this.retrieveOrders} />
           </div>
@@ -104,16 +80,11 @@ class Orders extends Component {
             <Route
               path='/orders/:id'
               render={() => (
-                <OrderSummary
-                  orderSummary={this.state.orderSummary}
-                  deleteOrderHandler={this.deleteOrderHandler}
-                  retrieveOrders={this.retrieveOrders}
-                />
+                <OrderSummary orderSummary={this.state.orderSummary} />
               )}
             />
           </>
         ) : (
-          // Show a loader in rendering process
           <RollerLoader />
         )}
       </div>
@@ -121,10 +92,4 @@ class Orders extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(Orders);
+export default Orders;
